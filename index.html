@@ -1,10 +1,15 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <!-- Metadata dan links -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jabar Siaga - Portal Kebencanaan Jawa Barat</title>
+    <meta name="description" content="Sistem pemantauan 7 peta rawan bencana di Jawa Barat">
+    
+    <!-- Open Graph Metadata -->
+    <meta property="og:title" content="Jabar Siaga - Portal Kebencanaan Jawa Barat">
+    <meta property="og:description" content="Sistem pemantauan 7 peta rawan bencana di Jawa Barat">
+    <meta property="og:type" content="website">
     
     <!-- Font & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,8 +20,8 @@
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     
-    <!-- tsParticles -->
-    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.9.3/tsparticles.bundle.min.js"></script>
+    <!-- Particles.js -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     
     <!-- CSS -->
     <link rel="stylesheet" href="css/style.css">
@@ -31,10 +36,405 @@
     </div>
 
     <!-- Particle Background -->
-    <div id="tsparticles"></div>
+    <div id="particles-js"></div>
 
-    <!-- Navigation dan konten lainnya -->
-    <!-- ... (sesuai kode yang diberikan sebelumnya) -->
+    <!-- Navigation -->
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>Jabar<span class="logo-highlight">Siaga</span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active"><i class="fas fa-home"></i> Beranda</a></li>
+                <li><a href="#maps" class="nav-link"><i class="fas fa-map"></i> Peta</a></li>
+                <li><a href="#dashboard" class="nav-link"><i class="fas fa-chart-bar"></i> Dashboard</a></li>
+                <li><a href="#analysis" class="nav-link"><i class="fas fa-chart-pie"></i> Analisis</a></li>
+                <li><a href="#news" class="nav-link"><i class="fas fa-newspaper"></i> Berita</a></li>
+                <li><a href="#emergency" class="nav-link emergency-btn"><i class="fas fa-phone-alt"></i> Darurat</a></li>
+            </ul>
+            <div class="nav-mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-section">
+            <div class="hero-overlay">
+                <div class="noise-layer"></div>
+                <div class="animated-gradient"></div>
+            </div>
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-gradient">Jabar</span>
+                    <span class="title-gradient">Siaga</span>
+                </h1>
+                <p class="hero-subtitle">7 Peta Rawan Bencana di Jawa Barat</p>
+                <div class="hero-description">
+                    <p>Portal resmi pemantauan kebencanaan Jawa Barat yang menyajikan data real-time, peta interaktif, dan analisis risiko berbasis 7 parameter bencana utama untuk mendukung pengambilan keputusan dan kesiapsiagaan masyarakat.</p>
+                </div>
+                <div class="hero-buttons">
+                    <button class="cta-button glow-button" id="accessMapBtn">
+                        <span class="button-text">Akses Peta</span>
+                        <span class="button-ripple"></span>
+                        <i class="fas fa-map-marked-alt button-icon"></i>
+                    </button>
+                    <button class="cta-button outline-button" id="dashboardBtn">
+                        <span class="button-text">Dashboard Analisis</span>
+                        <i class="fas fa-chart-line button-icon"></i>
+                    </button>
+                </div>
+                <div class="scroll-indicator">
+                    <div class="scroll-dots">
+                        <div class="scroll-dot active"></div>
+                        <div class="scroll-dot"></div>
+                        <div class="scroll-dot"></div>
+                    </div>
+                    <p class="scroll-text">Gulir untuk informasi</p>
+                    <i class="fas fa-chevron-down scroll-arrow"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Weather Section -->
+        <section class="weather-section">
+            <div class="section-header">
+                <h2><i class="fas fa-cloud-sun"></i> Prakiraan Cuaca BMKG</h2>
+                <p class="section-subtitle">27 Kabupaten/Kota di Jawa Barat</p>
+                <div class="last-updated" id="weatherLastUpdated">
+                    <i class="fas fa-sync-alt"></i> Memperbarui...
+                </div>
+            </div>
+            <div class="weather-grid" id="weatherGrid">
+                <!-- Weather cards will be populated by JavaScript -->
+                <div class="weather-loading">
+                    <div class="loading-spinner small"></div>
+                    <p>Memuat data cuaca...</p>
+                </div>
+            </div>
+            <div class="weather-legend">
+                <div class="legend-item"><span class="legend-color clear"></span> Cerah</div>
+                <div class="legend-item"><span class="legend-color cloudy"></span> Berawan</div>
+                <div class="legend-item"><span class="legend-color rain"></span> Hujan</div>
+                <div class="legend-item"><span class="legend-color storm"></span> Hujan Lebat</div>
+            </div>
+        </section>
+
+        <!-- Analysis Charts Section -->
+        <section id="analysis" class="analysis-section">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-bar"></i> Infografis Bencana Jawa Barat 2024</h2>
+                <p class="section-subtitle">Data 27 Kabupaten/Kota di Jawa Barat</p>
+            </div>
+            
+            <div class="charts-container">
+                <div class="chart-card">
+                    <h3><i class="fas fa-mountain"></i> Total Bencana per Kabupaten/Kota</h3>
+                    <div class="chart-container">
+                        <canvas id="disasterChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="chart-card">
+                    <h3><i class="fas fa-chart-pie"></i> Distribusi Jenis Bencana</h3>
+                    <div class="chart-container">
+                        <canvas id="typeChart"></canvas>
+                    </div>
+                </div>
+                
+                <div class="chart-card">
+                    <h3><i class="fas fa-exclamation-triangle"></i> 10 Daerah Rawan Bencana</h3>
+                    <div class="top-disasters" id="topDisasters">
+                        <!-- Top disasters list will be populated by JavaScript -->
+                        <div class="loading-spinner small"></div>
+                    </div>
+                </div>
+                
+                <div class="chart-card">
+                    <h3><i class="fas fa-map-marked-alt"></i> Statistik Bencana</h3>
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <div class="stat-value" id="totalDisasters">0</div>
+                            <div class="stat-label">Total Bencana</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="affectedRegions">0</div>
+                            <div class="stat-label">Daerah Terdampak</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="avgDisasters">0</div>
+                            <div class="stat-label">Rata-rata per Daerah</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-value" id="topDisasterType">-</div>
+                            <div class="stat-label">Jenis Dominan</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="data-source">
+                <p><i class="fas fa-database"></i> <strong>Sumber Data:</strong> Jumlah Bencana Alam Menurut Kabupaten/Kota dan Jenis Bencana Alam di Provinsi Jawa Barat, 2024</p>
+            </div>
+        </section>
+
+        <!-- Maps Section -->
+        <section id="maps" class="maps-section">
+            <div class="section-header">
+                <h2><i class="fas fa-layer-group"></i> 7 Peta Rawan Bencana</h2>
+                <p class="section-subtitle">Analisis spasial untuk mitigasi bencana</p>
+            </div>
+            
+            <div class="maps-description">
+                <div class="map-layer-info">
+                    <h3><i class="fas fa-info-circle"></i> Informasi Layer Peta</h3>
+                    <p>Portal ini menyediakan 7 layer peta rawan bencana yang dapat diaktifkan secara terpisah atau digabungkan untuk analisis komprehensif:</p>
+                    <ul class="layer-list">
+                        <li><i class="fas fa-fire"></i> <strong>Rawan Gunung Api</strong> - Zona bahaya erupsi gunung berapi</li>
+                        <li><i class="fas fa-mountain"></i> <strong>Rawan Gerakan Tanah</strong> - Area potensi longsor dan amblas</li>
+                        <li><i class="fas fa-sliders-h"></i> <strong>Indeks Risiko Longsor</strong> - Tingkat kerentanan berdasarkan parameter geologi</li>
+                        <li><i class="fas fa-water"></i> <strong>Indeks Risiko Banjir</strong> - Analisis daerah genangan dan DAS</li>
+                        <li><i class="fas fa-tree"></i> <strong>Indeks Risiko Kebakaran Hutan</strong> - Area rawan kebakaran lahan</li>
+                        <li><i class="fas fa-wave-square"></i> <strong>Indeks Risiko Tsunami</strong> - Zona bahaya tsunami pesisir</li>
+                        <li><i class="fas fa-sun"></i> <strong>Indeks Risiko Kekeringan</strong> - Daerah rawan kekurangan air</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="map-container">
+                <div class="map-header">
+                    <h3><i class="fas fa-globe-asia"></i> Peta Interaktif GIS</h3>
+                    <div class="map-actions">
+                        <button class="map-action-btn" onclick="window.open('https://www.arcgis.com/apps/instant/atlas/index.html?appid=af6cc543bcc2468ea0cee2506814abf7', '_blank')">
+                            <i class="fas fa-external-link-alt"></i> Buka di Tab Baru
+                        </button>
+                        <button class="map-action-btn fullscreen-btn" data-target="map2d">
+                            <i class="fas fa-expand"></i> Layar Penuh
+                        </button>
+                    </div>
+                </div>
+                <div class="map-iframe-container">
+                    <iframe 
+                        id="map2d"
+                        class="map-iframe"
+                        src="https://www.arcgis.com/apps/instant/atlas/index.html?appid=af6cc543bcc2468ea0cee2506814abf7"
+                        title="Peta 2D Kebencanaan Jawa Barat"
+                        loading="eager"
+                        allow="geolocation"
+                    ></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="dashboard-section">
+            <div class="section-header">
+                <h2><i class="fas fa-tachometer-alt"></i> Dashboard Analisis Risiko</h2>
+                <p class="section-subtitle">Monitoring real-time dan prediksi bencana</p>
+            </div>
+            
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <h3><i class="fas fa-exclamation-triangle"></i> Status Siaga</h3>
+                    <div class="alert-level">
+                        <div class="alert-icon high-alert">
+                            <i class="fas fa-exclamation-circle"></i>
+                        </div>
+                        <div class="alert-info">
+                            <h4>SIAGA TINGGI</h4>
+                            <p>Hingga April 2026</p>
+                            <small>Status Tanggap Darurat Bencana</small>
+                        </div>
+                    </div>
+                    <div class="alert-details">
+                        <p><i class="fas fa-clock"></i> <strong>72 Jam Pertama:</strong> Evakuasi dan pencarian korban</p>
+                        <p><i class="fas fa-money-bill-wave"></i> <strong>Dana BTT 2026:</strong> Rp328 Miliar</p>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3><i class="fas fa-users"></i> Dampak Bencana 2026</h3>
+                    <div class="impact-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">26,318</div>
+                            <div class="stat-label">Warga Terdampak</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">18</div>
+                            <div class="stat-label">Kejadian Bencana</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">Ribuan</div>
+                            <div class="stat-label">Warga Dievakuasi</div>
+                        </div>
+                    </div>
+                    <div class="impact-details">
+                        <p><i class="fas fa-map-marker-alt"></i> <strong>Lokasi Terparah:</strong> Karawang & Bekasi</p>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card">
+                    <h3><i class="fas fa-calendar-alt"></i> Timeline Bencana 2026</h3>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">Jan 2026</div>
+                            <div class="timeline-content">
+                                <h5>18 Bencana Terjadi</h5>
+                                <p>Karawang titik terparah</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">Jan-Apr 2026</div>
+                            <div class="timeline-content">
+                                <h5>Status Tanggap Darurat</h5>
+                                <p>Seluruh kabupaten/kota siaga</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">20 Jan 2026</div>
+                            <div class="timeline-content">
+                                <h5>Banjir Terparah</h5>
+                                <p>Karawang & Bekasi terendam</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- News Section -->
+        <section id="news" class="news-section">
+            <div class="section-header">
+                <h2><i class="fas fa-newspaper"></i> Berita Kebencanaan Terkini</h2>
+                <p class="section-subtitle">Informasi resmi dan terpercaya</p>
+            </div>
+            
+            <div class="news-grid" id="newsGrid">
+                <!-- News cards will be populated by JavaScript -->
+                <div class="news-loading">
+                    <div class="loading-spinner small"></div>
+                    <p>Memuat berita terkini...</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Emergency Section -->
+        <section id="emergency" class="emergency-section">
+            <div class="section-header">
+                <h2><i class="fas fa-phone-alt"></i> Kontak Darurat</h2>
+                <p class="section-subtitle">Hubungi dalam keadaan darurat</p>
+            </div>
+            
+            <div class="emergency-grid">
+                <a href="tel:112" class="emergency-card police">
+                    <div class="emergency-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3>112</h3>
+                    <p>Darurat Umum</p>
+                </a>
+                <a href="tel:119" class="emergency-card ambulance">
+                    <div class="emergency-icon">
+                        <i class="fas fa-ambulance"></i>
+                    </div>
+                    <h3>119</h3>
+                    <p>Ambulans & Kesehatan</p>
+                </a>
+                <a href="tel:113" class="emergency-card fire">
+                    <div class="emergency-icon">
+                        <i class="fas fa-fire"></i>
+                    </div>
+                    <h3>113</h3>
+                    <p>Pemadam Kebakaran</p>
+                </a>
+                <a href="tel:129" class="emergency-card bnpb">
+                    <div class="emergency-icon">
+                        <i class="fas fa-hands-helping"></i>
+                    </div>
+                    <h3>129</h3>
+                    <p>BNPB</p>
+                </a>
+                <a href="tel:115" class="emergency-card sar">
+                    <div class="emergency-icon">
+                        <i class="fas fa-life-ring"></i>
+                    </div>
+                    <h3>115</h3>
+                    <p>SAR Nasional</p>
+                </a>
+                <a href="tel:110" class="emergency-card police">
+                    <div class="emergency-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>110</h3>
+                    <p>Polisi</p>
+                </a>
+            </div>
+            
+            <div class="emergency-info">
+                <p><i class="fas fa-exclamation-circle"></i> <strong>BPBD Jawa Barat:</strong> <a href="https://bpbd.jabarprov.go.id" target="_blank">bpbd.jabarprov.go.id</a></p>
+                <p><i class="fas fa-info-circle"></i> Gunakan hanya untuk keadaan darurat sebenarnya</p>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="main-footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Jabar<span class="logo-highlight">Siaga</span></span>
+                    </div>
+                    <p class="footer-description">
+                        Portal resmi pemantauan kebencanaan Jawa Barat dengan 7 peta rawan bencana untuk analisis risiko terpadu dan kesiapsiagaan masyarakat.
+                    </p>
+                    <div class="footer-badge">
+                        <i class="fas fa-check-circle"></i> Sistem Resmi
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Sumber Data</h4>
+                    <ul class="footer-links">
+                        <li><a href="https://bpbd.jabarprov.go.id" target="_blank">BPBD Jawa Barat</a></li>
+                        <li><a href="https://bnpb.go.id" target="_blank">BNPB</a></li>
+                        <li><a href="https://data.bmkg.go.id" target="_blank">BMKG Data Terbuka</a></li>
+                        <li><a href="https://jabarprov.go.id" target="_blank">Pemprov Jawa Barat</a></li>
+                        <li><a href="https://stpn.ac.id" target="_blank">STPN</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Pengembangan</h4>
+                    <div class="author-info">
+                        <div class="author-avatar">
+                            <i class="fas fa-university"></i>
+                        </div>
+                        <div class="author-details">
+                            <p class="author-name">Sekolah Tinggi Pertanahan Nasional</p>
+                            <p class="author-role">Badan Pertanahan Nasional Republik Indonesia</p>
+                            <p class="author-contact">Jl. Tata Bumi No.5, Yogyakarta</p>
+                        </div>
+                    </div>
+                    <div class="tech-stack">
+                        <span class="tech-badge">GIS</span>
+                        <span class="tech-badge">Web Mapping</span>
+                        <span class="tech-badge">Data Analytics</span>
+                        <span class="tech-badge">Disaster Management</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 Jabar Siaga - Portal Kebencanaan Jawa Barat. Hak Cipta Dilindungi.</p>
+                <p class="footer-disclaimer">
+                    <i class="fas fa-exclamation-triangle"></i> Informasi dalam portal ini bersifat dinamis dan dapat berubah sesuai perkembangan terkini.
+                </p>
+            </div>
+        </footer>
+    </main>
 
     <!-- JavaScript Files -->
     <script src="js/particles-config.js"></script>
@@ -42,6 +442,5 @@
     <script src="js/weather.js"></script>
     <script src="js/news.js"></script>
     <script src="js/charts.js"></script>
-    <!-- Optional: <script src="js/particle-controls.js"></script> -->
 </body>
 </html>
