@@ -1,4 +1,4 @@
-// Weather Data for 27 Cities in West Java
+// Weather Data for 27 Cities in West Java with Carousel
 class WeatherManager {
     constructor() {
         this.cities = [
@@ -31,32 +31,63 @@ class WeatherManager {
             { name: 'Kota Banjar', temp: 27, condition: 'Cerah Berawan', humidity: 71, wind: 12, icon: '⛅' }
         ];
         
+        this.currentIndex = 0;
+        this.cardsPerView = this.getCardsPerView();
         this.init();
+    }
+    
+    getCardsPerView() {
+        if (window.innerWidth >= 1200) return 5;
+        if (window.innerWidth >= 992) return 4;
+        if (window.innerWidth >= 768) return 3;
+        if (window.innerWidth >= 576) return 2;
+        return 1;
     }
     
     init() {
         this.renderWeather();
         this.updateLastUpdated();
+        this.initCarouselControls();
         
         // Update weather every 30 minutes
         setInterval(() => this.updateWeather(), 30 * 60 * 1000);
+        
+        // Auto slide every 5 seconds
+        setInterval(() => this.nextSlide(), 5000);
+        
+        // Update cards per view on resize
+        window.addEventListener('resize', () => {
+            this.cardsPerView = this.getCardsPerView();
+            this.renderWeather();
+        });
     }
     
     renderWeather() {
-        const weatherGrid = document.getElementById('weatherGrid');
-        if (!weatherGrid) return;
+        const weatherCarousel = document.getElementById('weatherCarousel');
+        if (!weatherCarousel) return;
         
-        weatherGrid.innerHTML = '';
+        weatherCarousel.innerHTML = '';
         
-        this.cities.forEach(city => {
+        // Calculate visible cities
+        const startIndex = this.currentIndex;
+        const endIndex = Math.min(startIndex + this.cardsPerView, this.cities.length);
+        
+        for (let i = startIndex; i < endIndex; i++) {
+            const city = this.cities[i];
             const card = this.createWeatherCard(city);
-            weatherGrid.appendChild(card);
-        });
+            weatherCarousel.appendChild(card);
+        }
     }
     
     createWeatherCard(city) {
         const card = document.createElement('div');
         card.className = 'weather-card';
+        
+        // Determine weather class for styling
+        let weatherClass = '';
+        if (city.condition.includes('Cerah')) weatherClass = 'clear';
+        else if (city.condition.includes('Berawan')) weatherClass = 'cloudy';
+        else if (city.condition.includes('Hujan')) weatherClass = 'rain';
         
         card.innerHTML = `
             <div class="weather-card-header">
@@ -64,26 +95,51 @@ class WeatherManager {
                 <div class="weather-icon">${city.icon}</div>
             </div>
             <div class="weather-temp">${city.temp}°C</div>
-            <div class="weather-condition">${city.condition}</div>
+            <div class="weather-condition ${weatherClass}">${city.condition}</div>
             <div class="weather-details">
-                <span>💧 ${city.humidity}%</span>
-                <span>💨 ${city.wind} km/j</span>
+                <span><i class="fas fa-tint"></i> ${city.humidity}%</span>
+                <span><i class="fas fa-wind"></i> ${city.wind} km/j</span>
             </div>
         `;
         
         return card;
     }
     
+    initCarouselControls() {
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        
+        if (prevBtn) {
+            prevBtn.addEventListener('click', () => this.prevSlide());
+        }
+        
+        if (nextBtn) {
+            nextBtn.addEventListener('click', () => this.nextSlide());
+        }
+    }
+    
+    nextSlide() {
+        this.currentIndex = (this.currentIndex + 1) % (this.cities.length - this.cardsPerView + 1);
+        this.renderWeather();
+    }
+    
+    prevSlide() {
+        this.currentIndex = this.currentIndex === 0 ? 
+            (this.cities.length - this.cardsPerView) : 
+            this.currentIndex - 1;
+        this.renderWeather();
+    }
+    
     updateWeather() {
         // Simulate weather changes
         this.cities = this.cities.map(city => {
-            const tempChange = (Math.random() * 2 - 1); // -1 to +1
+            const tempChange = (Math.random() * 2 - 1);
             const newTemp = Math.max(22, Math.min(32, city.temp + tempChange));
             
             // Randomly change condition occasionally
             let newCondition = city.condition;
             if (Math.random() > 0.8) {
-                const conditions = ['Cerah', 'Berawan', 'Hujan Ringan', 'Cerah Berawan'];
+                const conditions = ['Cerah', 'Berawan', 'Hujan Ringan', 'Cerah Berawan', 'Hujan Lebat'];
                 newCondition = conditions[Math.floor(Math.random() * conditions.length)];
             }
             
