@@ -1010,22 +1010,40 @@ section {
     border-color: var(--primary-blue);
 }
 
+/* PERUBAHAN: News Image dengan gambar latar */
 .news-image {
     height: 200px;
     width: 100%;
     overflow: hidden;
     position: relative;
-    background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
     display: flex;
     align-items: center;
     justify-content: center;
+    background-size: cover !important;
+    background-position: center !important;
+    background-repeat: no-repeat !important;
 }
 
+/* PERUBAHAN: Overlay untuk meningkatkan keterbacaan teks di atas gambar */
+.news-image::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.1));
+    z-index: 1;
+}
+
+/* PERUBAHAN: Ikon berita (hanya ditampilkan jika tidak ada gambar) */
 .news-image i {
     font-size: 4rem;
     color: rgba(255, 255, 255, 0.7);
+    z-index: 2;
 }
 
+/* PERUBAHAN: Tanggal berita di atas gambar */
 .news-date {
     position: absolute;
     top: 1rem;
@@ -1036,6 +1054,7 @@ section {
     border-radius: 4px;
     font-size: 0.8rem;
     font-weight: 500;
+    z-index: 3;
 }
 
 .news-content {
@@ -1473,10 +1492,6 @@ section {
         min-width: 180px;
     }
     
-    .dashboard-grid {
-        grid-template-columns: 1fr;
-    }
-    
     .news-grid {
         grid-template-columns: 1fr;
     }
@@ -1522,10 +1537,6 @@ section {
     .weather-card {
         min-width: 160px;
         padding: 1rem;
-    }
-    
-    .impact-stats {
-        grid-template-columns: 1fr;
     }
     
     .emergency-grid {
