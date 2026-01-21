@@ -163,14 +163,14 @@ class DisasterSimulationGame {
                         id: "B4",
                         title: "Lindungi Kepala dan Leher",
                         text: "Berlutut dan lindungi kepala dengan tangan sambil mencari tempat aman",
-                        correct: true,
+                        correct: false,
                         impact: {
-                            preparedness: 20,
-                            injuryRisk: -25,
-                            timeToSafety: 0,
-                            compliance: 20
+                            preparedness: -5,
+                            injuryRisk: 15,
+                            timeToSafety: 2,
+                            compliance: -10
                         },
-                        feedback: "BENAR! Melindungi kepala dan leher adalah prioritas utama. Area ini paling rentan terhadap cedera fatal. Kombinasi berlindung dan melindungi kepala memberikan perlindungan optimal."
+                        feedback: "TIDAK CUKUP! Meskipun melindungi kepala penting, tetapi tanpa berlindung di bawah meja yang kokoh, Anda masih rentan tertimpa benda berat. Kombinasi Drop-Cover-Hold On memberikan perlindungan lebih optimal."
                     },
                     {
                         id: "B2",
@@ -309,14 +309,14 @@ class DisasterSimulationGame {
                         id: "D3",
                         title: "Bantu Korban dengan P3K Dasar",
                         text: "Memberikan pertolongan pertama sesuai kemampuan dengan P3K tas siaga",
-                        correct: true,
+                        correct: false,
                         impact: {
-                            preparedness: 20,
-                            injuryRisk: -15,
-                            timeToSafety: -3,
-                            compliance: 25
+                            preparedness: -10,
+                            injuryRisk: 20,
+                            timeToSafety: 3,
+                            compliance: -5
                         },
-                        feedback: "BENAR! Pertolongan pertama dasar menyelamatkan nyawa. Prioritaskan: 1) Hentikan pendarahan, 2) Jaga jalan napas, 3) Rawat luka bakar. Hanya lakukan yang sesuai kemampuan untuk hindari kesalahan fatal."
+                        feedback: "BERISIKO! Jika tidak terlatih, pertolongan pertama yang salah bisa memperparah cedera. Prioritas adalah hubungi 112 dan minta instruksi. Hanya lakukan pertolongan jika benar-benar mampu dan tidak ada pilihan lain."
                     }
                 ]
             }
@@ -421,14 +421,14 @@ class DisasterSimulationGame {
                         id: "B3",
                         title: "Buat Pelampung Darurat",
                         text: "Menggunakan ember kosong atau jerigen sebagai pelampung",
-                        correct: true,
+                        correct: false,
                         impact: {
-                            preparedness: 20,
-                            injuryRisk: -20,
+                            preparedness: 10,
+                            injuryRisk: 10,
                             timeToSafety: 3,
-                            compliance: 20
+                            compliance: 10
                         },
-                        feedback: "CERDAS! Membuat pelampung darurat bisa menyelamatkan nyawa. Ember plastik besar, jerigen kosong, atau ban dalam bisa digunakan. Pegang erat dan biarkan arus membawa sambil berteriak minta tolong."
+                        feedback: "IDE BAIK tapi tidak cukup! Pelampung darurat bisa membantu, tetapi tetap harus berpegangan pada benda kokoh. Ember atau jerigen bisa terlepas dari genggaman saat arus kuat."
                     },
                     {
                         id: "B4",
@@ -554,14 +554,14 @@ class DisasterSimulationGame {
                         id: "D4",
                         title: "Periksa Instalasi Listrik",
                         text: "Memeriksa dan membersihkan instalasi listrik sebelum digunakan kembali",
-                        correct: true,
+                        correct: false,
                         impact: {
-                            preparedness: 25,
-                            injuryRisk: -30,
+                            preparedness: 10,
+                            injuryRisk: 40,
                             timeToSafety: -5,
-                            compliance: 25
+                            compliance: 15
                         },
-                        feedback: "PENTING! Instalasi listrik yang terendam berisiko konsleting dan kebakaran. Matikan MCB utama, keringkan semua peralatan, dan mintalah teknisi berlisensi untuk memeriksa sebelum menyalakan kembali."
+                        feedback: "BERBAHAYA! Memeriksa instalasi listrik sendiri bisa menyebabkan konsleting dan sengatan listrik. Matikan MCB utama dan hubungi teknisi berlisensi untuk memeriksa sebelum menyalakan kembali."
                     }
                 ]
             }
@@ -726,27 +726,27 @@ class DisasterSimulationGame {
                         id: "C2",
                         title: "Beri Tanda Area Berbahaya",
                         text: "Memberi tanda peringatan di sekitar area longsor untuk warga lain",
-                        correct: true,
+                        correct: false,
                         impact: {
-                            preparedness: 25,
-                            injuryRisk: -15,
-                            timeToSafety: -3,
-                            compliance: 30
+                            preparedness: 10,
+                            injuryRisk: -5,
+                            timeToSafety: -2,
+                            compliance: 20
                         },
-                        feedback: "BAIK! Memberi tanda peringatan mencegah korban tambahan. Gunakan kain warna mencolok, papan, atau benda lain yang mudah dilihat. Tulis 'DAERAH LONGSOR - BERBAHAYA'."
+                        feedback: "BAIK tapi bukan prioritas utama! Memberi tanda peringatan penting, tetapi lebih penting menghubungi tim SAR terlebih dahulu untuk menyelamatkan korban tertimbun."
                     },
                     {
                         id: "C3",
                         title: "Cari Jalur Alternatif",
                         text: "Mencari jalan lain untuk evakuasi warga yang selamat",
-                        correct: true,
+                        correct: false,
                         impact: {
-                            preparedness: 20,
-                            injuryRisk: -10,
-                            timeToSafety: -5,
-                            compliance: 25
+                            preparedness: 5,
+                            injuryRisk: 5,
+                            timeToSafety: -3,
+                            compliance: 15
                         },
-                        feedback: "PENTING! Longsor sering merusak jalan utama. Mencari jalur alternatif membantu evakuasi korban yang terluka dan akses tim SAR. Prioritaskan jalan yang jauh dari tebing dan lereng curam."
+                        feedback: "PENTING tapi bukan darurat! Mencari jalur alternatif membantu, tetapi prioritas utama adalah menolong korban tertimbun. Biarkan tim SAR yang mengatur jalur evakuasi."
                     }
                 ]
             }
@@ -864,14 +864,14 @@ class DisasterSimulationGame {
                         id: "B4",
                         title: "Posisi Jongkok dengan Kaki Rapat",
                         text: "Berjongkok dengan kaki merapat jika terpaksa di luar ruangan",
-                        correct: true,
+                        correct: false,
                         impact: {
-                            preparedness: 20,
-                            injuryRisk: -20,
+                            preparedness: 5,
+                            injuryRisk: 10,
                             timeToSafety: 1,
-                            compliance: 15
+                            compliance: 5
                         },
-                        feedback: "TEKNIK DARURAT! Jika terpaksa di luar tanpa tempat berlindung: 1) Jongkok dengan kaki merapat, 2) Jangan berbaring, 3) Jauhi pohon tinggi, 4) Turun dari tempat tinggi. Teknik ini mengurangi risiko tapi tetap berbahaya."
+                        feedback: "TEKNIK DARURAT tapi tidak ideal! Jika terpaksa di luar tanpa tempat berlindung: 1) Jongkok dengan kaki merapat, 2) Jangan berbaring. TETAPI tetap lebih berbahaya daripada mencari bangunan tertutup."
                     }
                 ]
             },
@@ -911,14 +911,14 @@ class DisasterSimulationGame {
                         id: "C2",
                         title: "Matikan Peralatan Elektronik",
                         text: "Mencabut stop kontak peralatan elektronik penting",
-                        correct: true,
+                        correct: false,
                         impact: {
-                            preparedness: 25,
-                            injuryRisk: -15,
+                            preparedness: 15,
+                            injuryRisk: -5,
                             timeToSafety: -2,
-                            compliance: 25
+                            compliance: 20
                         },
-                        feedback: "PENTING! Matikan dan cabut peralatan elektronik untuk menghindari kerusakan saat listrik hidup kembali dengan tegangan tidak stabil. Terutama kulkas, TV, komputer, dan charger ponsel."
+                        feedback: "BAIK tapi bukan prioritas utama! Mematikan peralatan elektronik penting, tetapi lebih penting memastikan keselamatan keluarga dan memiliki sumber penerangan."
                     },
                     {
                         id: "C3",
@@ -1066,6 +1066,9 @@ class DisasterSimulationGame {
     createPhaseContent(phase) {
         const scenario = this.scenarios[this.currentScenario];
         
+        // Shuffle decisions untuk mengacak urutan jawaban
+        const shuffledDecisions = this.shuffleArray([...phase.decisions]);
+        
         return `
             <div class="scenario-intro">
                 <h3>Fase ${phase.id}: ${phase.title}</h3>
@@ -1079,10 +1082,10 @@ class DisasterSimulationGame {
                 ` : ''}
                 
                 <div class="decision-options" id="decision-options">
-                    ${phase.decisions.map(decision => `
+                    ${shuffledDecisions.map(decision => `
                         <div class="decision-card" data-decision="${decision.id}">
                             <div class="decision-header">
-                                <div class="decision-icon">${String.fromCharCode(64 + parseInt(decision.id[1]))}</div>
+                                <div class="decision-icon">${decision.id}</div>
                                 <h4 class="decision-title">${decision.title}</h4>
                             </div>
                             <p class="decision-text">${decision.text}</p>
@@ -1101,6 +1104,15 @@ class DisasterSimulationGame {
                 </div>
             </div>
         `;
+    }
+    
+    // Fungsi untuk mengacak array
+    shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
     }
     
     bindDecisionEvents() {
