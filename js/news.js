@@ -6,56 +6,64 @@ class NewsManager {
                 title: '18 Bencana Terjang Jabar di Awal 2026, Karawang Jadi Titik Terparah',
                 description: 'Sebanyak 18 bencana alam terjadi di Jawa Barat sejak awal tahun 2026 dengan Kabupaten Karawang sebagai daerah terdampak paling parah.',
                 source: 'detik.com',
-                date: '2026-01-15',
+                date: 'Selasa, 13 Jan 2026',
+                image: 'https://akcdn.detik.net.id/community/media/visual/2025/12/06/banjir-di-kabupaten-bandung-meluas-1765014507631_169.jpeg?w=700&q=90',
                 url: 'https://www.detik.com/jabar/berita/d-8305133/18-bencana-terjang-jabar-di-awal-2026-karawang-jadi-titik-terparah'
             },
             {
                 title: 'Jawa Barat Status Tanggap Darurat Bencana hingga April 2026',
                 description: 'Pemprov Jabar menetapkan status tanggap darurat bencana hingga April 2026 dengan menyiapkan langkah-langkah khusus selama 72 jam pertama.',
                 source: 'ayobandung.com',
-                date: '2026-01-18',
+                date: 'Rabu, 21 Januari 2026',
+                image: 'https://static.promediateknologi.id/crop/0x0:0x0/1200x800/webp/photo/p1/79/2026/01/21/Jabar-Siaga-Bencana-Resize-4270264206.jpg',
                 url: 'https://www.ayobandung.com/umum/7916597315/jawa-barat-status-tanggap-darurat-bencana-hingga-april-2026-ini-beberapa-jenis-bencana-dan-langkah-pertama-selama-72-jam'
             },
             {
                 title: 'Awal Tahun 2026, BPBD Catat 26.318 Warga Jawa Barat Terdampak Bencana Alam',
                 description: 'Badan Penanggulangan Bencana Daerah Jawa Barat mencatat sebanyak 26.318 warga terdampak bencana alam sejak awal tahun 2026.',
                 source: 'jabar.nu.or.id',
-                date: '2026-01-20',
+                date: 'Kamis, 15 Januari 2026',
+                image: 'https://storage.nu.or.id/storage/post/16_9/mid/desain-tanpa-judul-2_1768482179.webp',
                 url: 'https://jabar.nu.or.id/seputar-jabar/awal-tahun-2026-bpbd-catat-26-318-warga-jawa-barat-terdampak-bencana-alam-flmuC'
             },
             {
                 title: 'Daerah Provinsi Jawa Barat Rawan Bencana, Seluruh Pemerintah Kabupaten/Kota Menyatakan Siaga',
                 description: 'Seluruh pemerintah kabupaten/kota di Jawa Barat menyatakan status siaga bencana mengingat tingginya potensi bencana alam di wilayah ini.',
                 source: 'pikiran-rakyat.com',
-                date: '2026-01-22',
+                date: 'Selasa, 20 Jan 2026',
+                image: 'https://assets.pikiran-rakyat.com/crop/0x0:0x0/703x0/webp/photo/2026/01/20/3259245685.jpg',
                 url: 'https://www.pikiran-rakyat.com/news/pr-019945008/daerah-provinsi-jawa-barat-rawan-bencana-seluruh-pemerintah-kabupatenkota-menyatakan-siaga-menghadapinya?page=all'
             },
             {
                 title: 'Banjir hingga Longsor Melanda Sejumlah Daerah Jawa Barat, Pemprov Jabar Siapkan Rp328 Miliar Dana BTT 2026',
                 description: 'Pemprov Jawa Barat menyiapkan dana sebesar Rp328 miliar untuk penanggulangan bencana tahun 2026 menyusul meningkatnya kejadian banjir dan longsor.',
                 source: 'aksarajabar.pikiran-rakyat.com',
-                date: '2026-01-25',
+                date: 'Selasa, 20 Jan 2026',
+                image: 'https://assets.pikiran-rakyat.com/crop/0x0:0x0/720x0/webp/photo/2024/02/28/2427349290.jpg',
                 url: 'https://aksarajabar.pikiran-rakyat.com/jabar/pr-999946075/banjir-hingga-longsor-melanda-sejumlah-daerah-jawa-barat-pemprov-jabar-siapkan-rp328-miliar-dana-btt-2026'
             },
             {
                 title: 'Banjir Terparah di Jawa Barat: Karawang dan Bekasi Terendam Banjir, Ribuan Warga Dievakuasi',
                 description: 'Banjir terparah sejak awal tahun melanda Karawang dan Bekasi, menyebabkan ribuan warga terpaksa dievakuasi ke tempat yang lebih aman.',
                 source: 'transindonesia.co',
-                date: '2026-01-20',
+                date: 'Selasa, 20 Jan 2026',
+                image: 'https://chanelmuslim.com/wp-content/uploads/2026/01/banjir-karawang.jpg',
                 url: 'https://transindonesia.co/2026/01/20/banjir-terparah-di-jawa-barat-karawang-dan-bekasi-terendam-banjir-ribuan-warga-dievakuasi/'
             },
             {
                 title: 'Rentetan Bencana masih Terjadi di Jawa Barat',
                 description: 'Rentetan bencana alam masih terus terjadi di berbagai wilayah Jawa Barat, membutuhkan perhatian dan penanganan serius dari semua pihak.',
                 source: 'mediaindonesia.com',
-                date: '2026-01-28',
+                date: 'Jumat, 16 Januari 2026',
+                image: 'https://mediaindonesia.gumlet.io/news/2026/01/16/1768565470_8bf04499dbd515c48647.png?w=900&dpr=1',
                 url: 'https://mediaindonesia.com/nusantara/850651/rentetan-bencana-masih-terjadi-di-jawa-barat'
             },
             {
                 title: 'Pemprov Jabar Optimalkan Sistem Peringatan Dini Bencana',
                 description: 'Pemerintah Provinsi Jawa Barat mengoptimalkan sistem peringatan dini bencana untuk meminimalisir korban jiwa dan kerugian material.',
                 source: 'bpbd.jabarprov.go.id',
-                date: '2026-01-30',
+                date: 'Sabtu, 10 Jan 2026',
+                image: 'https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
                 url: 'https://bpbd.jabarprov.go.id'
             }
         ];
@@ -86,30 +94,17 @@ class NewsManager {
         const card = document.createElement('div');
         card.className = 'news-card';
         
-        // Format date
-        const date = new Date(news.date);
-        const formattedDate = date.toLocaleDateString('id-ID', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-        
-        // Get random gradient for card
-        const gradients = [
-            'linear-gradient(135deg, #0066cc, #7209b7)',
-            'linear-gradient(135deg, #ff6600, #e63946)',
-            'linear-gradient(135deg, #2a9d8f, #4cc9f0)',
-            'linear-gradient(135deg, #7209b7, #f9c74f)'
-        ];
-        const gradient = gradients[index % gradients.length];
+        // Use provided image or fallback gradient
+        const imageStyle = news.image 
+            ? `background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('${news.image}'); background-size: cover; background-position: center;`
+            : this.getRandomGradient(index);
         
         card.innerHTML = `
-            <div class="news-image" style="background: ${gradient};">
+            <div class="news-image" style="${imageStyle}">
                 <div class="news-date">
-                    <i class="far fa-calendar"></i> ${formattedDate}
+                    <i class="far fa-calendar"></i> ${news.date}
                 </div>
-                <i class="fas fa-newspaper"></i>
+                ${!news.image ? '<i class="fas fa-newspaper"></i>' : ''}
             </div>
             <div class="news-content">
                 <span class="news-source">${news.source}</span>
@@ -136,6 +131,18 @@ class NewsManager {
         }
         
         return card;
+    }
+    
+    getRandomGradient(index) {
+        const gradients = [
+            'linear-gradient(135deg, #0066cc, #7209b7)',
+            'linear-gradient(135deg, #ff6600, #e63946)',
+            'linear-gradient(135deg, #2a9d8f, #4cc9f0)',
+            'linear-gradient(135deg, #7209b7, #f9c74f)',
+            'linear-gradient(135deg, #e63946, #ff6600)',
+            'linear-gradient(135deg, #4cc9f0, #2a9d8f)'
+        ];
+        return gradients[index % gradients.length];
     }
     
     refreshNews() {
