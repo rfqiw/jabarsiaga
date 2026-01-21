@@ -164,8 +164,8 @@
     font-size: 1rem;
 }
 
-/* Region Selection */
-.region-selection {
+/* Game Info */
+.game-info {
     background: rgba(42, 157, 143, 0.1);
     border-radius: 15px;
     padding: 1.5rem;
@@ -173,7 +173,7 @@
     border-left: 4px solid var(--accent-green);
 }
 
-.region-selection h3 {
+.game-info h3 {
     font-size: 1.2rem;
     margin-bottom: 1rem;
     color: #ffffff;
@@ -182,30 +182,15 @@
     gap: 10px;
 }
 
-.region-selection h3 i {
+.game-info h3 i {
     color: var(--accent-green);
 }
 
-.region-select {
-    width: 100%;
-    padding: 12px 15px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 8px;
-    color: #ffffff;
+.game-info p {
     font-size: 1rem;
-    margin-bottom: 0.8rem;
-}
-
-.region-select:focus {
-    outline: none;
-    border-color: var(--primary-blue);
-}
-
-.region-hint {
-    font-size: 0.9rem;
-    color: var(--text-muted);
+    color: var(--text-secondary);
     margin-bottom: 1rem;
+    line-height: 1.6;
 }
 
 /* Buttons */
@@ -247,7 +232,6 @@
     font-size: 0.95rem;
     cursor: pointer;
     transition: all 0.3s ease;
-    margin-bottom: 1rem;
 }
 
 .btn-map-link:hover {
@@ -261,6 +245,7 @@
     padding: 1.5rem;
     margin-bottom: 2rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    display: none;
 }
 
 .progress-header {
@@ -420,11 +405,11 @@
     margin-bottom: 2rem;
     border: 1px solid rgba(255, 255, 255, 0.1);
     min-height: 300px;
+    display: none;
 }
 
 .scenario-intro {
-    text-align: center;
-    padding: 2rem;
+    padding: 1rem;
 }
 
 .scenario-intro h3 {
@@ -594,6 +579,7 @@
     font-size: 1rem;
     color: var(--text-secondary);
     line-height: 1.6;
+    margin-bottom: 1.5rem;
 }
 
 .feedback-impact {
@@ -636,6 +622,7 @@
     background: rgba(16, 36, 64, 0.6);
     border-radius: 15px;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    display: none;
 }
 
 .btn-control {
@@ -680,9 +667,14 @@
     color: white;
 }
 
-.btn-next:hover {
+.btn-next:hover:not(:disabled) {
     background: var(--primary-dark);
     transform: translateY(-2px);
+}
+
+.btn-next:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 /* Results Screen */
