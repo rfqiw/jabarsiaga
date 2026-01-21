@@ -11,8 +11,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Show console welcome message
     console.log('%c🚨 Jabar Siaga - Portal Kebencanaan Jawa Barat', 'color: #0066cc; font-size: 18px; font-weight: bold;');
-    console.log('%c7 Peta Rawan Bencana | Sistem Pemantauan Real-time', 'color: #ff6600;');
-    console.log('%cData resmi BPBD, BNPB, dan BMKG', 'color: #2a9d8f;');
+    console.log('%cWebGIS Kebencanaan dengan Peta 2D & 3D', 'color: #ff6600;');
+    console.log('%cData resmi BPBD, BNPB, BMKG, dan BPS', 'color: #2a9d8f;');
 });
 
 // Loading Screen Management
@@ -161,22 +161,9 @@ function initButtonActions() {
             }, 300);
         });
     }
-    
-    // Dashboard Button
-    const dashboardBtn = document.getElementById('dashboardBtn');
-    if (dashboardBtn) {
-        dashboardBtn.addEventListener('click', () => {
-            scrollToSection('dashboard');
-            // Add animation feedback
-            dashboardBtn.classList.add('clicked');
-            setTimeout(() => {
-                dashboardBtn.classList.remove('clicked');
-            }, 300);
-        });
-    }
 }
 
-// Fullscreen Map Functionality
+// Fullscreen Map Functionality - Updated for both 2D and 3D maps
 function initFullscreenMaps() {
     const fullscreenButtons = document.querySelectorAll('.fullscreen-btn');
     
@@ -272,21 +259,6 @@ function initRippleButtons() {
     });
 }
 
-// Utility function for date formatting
-function formatDate(dateString) {
-    const date = new Date(dateString);
-    const options = { 
-        weekday: 'long', 
-        year: 'numeric', 
-        month: 'long', 
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
-    };
-    
-    return date.toLocaleDateString('id-ID', options);
-}
-
 // Initialize on window load
 window.addEventListener('load', function() {
     // Update copyright year
@@ -298,4 +270,5 @@ window.addEventListener('load', function() {
     
     // Check for console errors
     console.log('%c✅ Sistem Jabar Siaga berhasil dimuat', 'color: #2a9d8f; font-weight: bold;');
+    console.log('%c🗺️ Peta 2D & 3D siap digunakan', 'color: #7209b7;');
 });
