@@ -1,4 +1,4 @@
-// Charts for Disaster Data Visualization
+// Charts for Disaster Data Visualization - BPS 2024 Data
 class ChartManager {
     constructor() {
         this.disasterData = this.parseCSVData();
@@ -6,7 +6,7 @@ class ChartManager {
     }
     
     parseCSVData() {
-        // CSV data from the provided string
+        // CSV data from BPS 2024
         const csvData = `Kabupaten/Kota,Jumlah Bencana Alam - Gempa Bumi,Jumlah Bencana Alam - Tsunami,Jumlah Bencana Alam - Gempa Bumi dan Tsunami,Jumlah Bencana Alam - Letusan Gunung Api,Jumlah Bencana Alam - Tanah Longsor,Jumlah Bencana Alam - Banjir,Jumlah Bencana Alam - Kekeringan,Jumlah Bencana Alam - Kebakaran Hutan dan Lahan,Jumlah Bencana Alam - Cuaca Ekstrem,Jumlah Bencana Alam - Gelombang Pasang/Abrasi
 Bogor,3,,,,14,15,5,,65,
 Sukabumi,3,,,,8,6,,,5,1
@@ -37,13 +37,25 @@ Kota Tasikmalaya,1,,,,,1,,,,
 Kota Banjar,1,,,,,,,,,
 Jawa Barat,6,,,,50,79,10,11,101,1`;
         
-        const lines = csvData.split('\n');
+        // Remove BOM if present
+        const cleanCsvData = csvData.replace(/^\uFEFF/, '');
+        
+        const lines = cleanCsvData.split('\n');
         const headers = lines[0].split(',');
         const data = [];
         
-        for (let i = 1; i < lines.length - 1; i++) {
-            const values = lines[i].split(',');
-            const region = values[0];
+        console.log('📊 Parsing BPS data...');
+        console.log(`Total lines: ${lines.length}`);
+        
+        for (let i = 1; i < lines.length - 1; i++) { // Skip last line (Jawa Barat total)
+            const line = lines[i].trim();
+            if (!line) continue;
+            
+            const values = line.split(',');
+            const region = values[0].trim();
+            
+            // Skip total row and empty regions
+            if (!region || region === 'Jawa Barat') continue;
             
             // Calculate total disasters
             let total = 0;
@@ -54,7 +66,7 @@ Jawa Barat,6,,,,50,79,10,11,101,1`;
                 }
             }
             
-            if (total > 0 && region !== 'Jawa Barat') {
+            if (total > 0) {
                 data.push({
                     region: region,
                     total: total,
@@ -77,66 +89,367 @@ Jawa Barat,6,,,,50,79,10,11,101,1`;
         // Sort by total disasters
         data.sort((a, b) => b.total - a.total);
         
+        console.log(`✅ Parsed ${data.length} regions with disaster data`);
         return data;
     }
     
     init() {
+        console.log('📈 Initializing charts with BPS data...');
         this.renderDisasterChart();
         this.renderTypeChart();
         this.renderTopDisasters();
         this.updateStats();
-        
-        // Update data source text
-        this.updateDataSource();
     }
-    
-    updateDataSource() {
-        const dataSource = document.querySelector('.data-source p');
-        if (dataSource) {
-            dataSource.innerHTML = `<i class="fas fa-database"></i> <strong>Sumber Data:</strong> Badan Pusat Statistik (BPS) Provinsi Jawa Barat`;
-        }
-    }
-    
-    // ... (sisanya tetap sama seperti file charts.js sebelumnya)
-    // Hanya bagian data-source yang diubah
     
     renderDisasterChart() {
-        // ... (kode tetap sama)
+        const ctx = document.getElementById('disasterChart');
+        if (!ctx) {
+            console.error('❌ Chart canvas not found');
+            return;
+        }
+        
+        // Get top 15 regions
+        const topRegions = this.disasterData.slice(0, 15);
+        const labels = topRegions.map(d => d.region);
+        const data = topRegions.map(d => d.total);
+        
+        console.log('📊 Rendering disaster chart:', topRegions.length, 'regions');
+        
+        // Clear any existing chart
+        if (ctx.chart) {
+            ctx.chart.destroy();
+        }
+        
+        // Create gradient
+        const gradient = ctx.getContext('2d').createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, 'rgba(0, 102, 204, 0.8)');
+        gradient.addColorStop(1, 'rgba(0, 102, 204, 0.2)');
+        
+        ctx.chart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: 'Jumlah Bencana',
+                    data: data,
+                    backgroundColor: gradient,
+                    borderColor: '#0066cc',
+                    borderWidth: 1,
+                    borderRadius: 5,
+                    hoverBackgroundColor: '#ff6600'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    title: {
+                        display: true,
+                        text: 'Jumlah Bencana per Kabupaten/Kota (Top 15) - Sumber: BPS 2024',
+                        color: '#ffffff',
+                        font: {
+                            size: 16
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        titleColor: '#ffffff',
+                        bodyColor: '#ffffff',
+                        callbacks: {
+                            label: function(context) {
+                                return `Jumlah Bencana: ${context.raw}`;
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Jumlah Bencana',
+                            color: '#b8c7e0'
+                        },
+                        grid: {
+                            color: 'rgba(255, 255, 255, 0.1)'
+                        },
+                        ticks: {
+                            color: '#8ca3c7',
+                            stepSize: 10
+                        }
+                    },
+                    x: {
+                        ticks: {
+                            color: '#8ca3c7',
+                            maxRotation: 45,
+                            minRotation: 45,
+                            font: {
+                                size: 10
+                            }
+                        },
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
     }
     
     renderTypeChart() {
-        // ... (kode tetap sama)
+        const ctx = document.getElementById('typeChart');
+        if (!ctx) {
+            console.error('❌ Type chart canvas not found');
+            return;
+        }
+        
+        // Calculate totals for each disaster type
+        const types = {
+            'Tanah Longsor': 0,
+            'Banjir': 0,
+            'Cuaca Ekstrem': 0,
+            'Gempa Bumi': 0,
+            'Kebakaran Hutan': 0,
+            'Kekeringan': 0,
+            'Lainnya': 0
+        };
+        
+        this.disasterData.forEach(region => {
+            types['Tanah Longsor'] += region.details.tanahLongsor;
+            types['Banjir'] += region.details.banjir;
+            types['Cuaca Ekstrem'] += region.details.cuacaEkstrem;
+            types['Gempa Bumi'] += region.details.gempa;
+            types['Kebakaran Hutan'] += region.details.kebakaran;
+            types['Kekeringan'] += region.details.kekeringan;
+            types['Lainnya'] += region.details.tsunami + region.details.gempaTsunami + 
+                               region.details.gunungApi + region.details.gelombangPasang;
+        });
+        
+        const labels = Object.keys(types);
+        const data = Object.values(types);
+        const colors = [
+            '#e63946', '#0066cc', '#ff6600', '#2a9d8f', 
+            '#7209b7', '#f9c74f', '#8ca3c7'
+        ];
+        
+        console.log('📊 Disaster type distribution:', types);
+        
+        // Clear any existing chart
+        if (ctx.chart) {
+            ctx.chart.destroy();
+        }
+        
+        ctx.chart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: labels,
+                datasets: [{
+                    data: data,
+                    backgroundColor: colors,
+                    borderWidth: 1,
+                    borderColor: 'rgba(255, 255, 255, 0.1)'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            padding: 20,
+                            color: '#ffffff',
+                            font: {
+                                size: 12
+                            }
+                        }
+                    },
+                    title: {
+                        display: true,
+                        text: 'Distribusi Jenis Bencana - Sumber: BPS 2024',
+                        color: '#ffffff',
+                        font: {
+                            size: 16
+                        }
+                    },
+                    tooltip: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                        titleColor: '#ffffff',
+                        bodyColor: '#ffffff',
+                        callbacks: {
+                            label: function(context) {
+                                const label = context.label || '';
+                                const value = context.raw || 0;
+                                const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                const percentage = Math.round((value / total) * 100);
+                                return `${label}: ${value} (${percentage}%)`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
     }
     
     renderTopDisasters() {
-        // ... (kode tetap sama)
+        const container = document.getElementById('topDisasters');
+        if (!container) {
+            console.error('❌ Top disasters container not found');
+            return;
+        }
+        
+        // Get top 10 regions
+        const top10 = this.disasterData.slice(0, 10);
+        
+        console.log('📊 Rendering top 10 disaster regions:', top10.length);
+        
+        container.innerHTML = '';
+        
+        if (top10.length === 0) {
+            container.innerHTML = '<p style="color: #8ca3c7; text-align: center;">Tidak ada data tersedia</p>';
+            return;
+        }
+        
+        top10.forEach((region, index) => {
+            const item = document.createElement('div');
+            item.className = 'disaster-item';
+            
+            // Color based on rank
+            let rankColor = '#8ca3c7';
+            if (index === 0) rankColor = '#e63946';
+            else if (index === 1) rankColor = '#ff6600';
+            else if (index === 2) rankColor = '#f9c74f';
+            
+            item.innerHTML = `
+                <div class="disaster-rank" style="background: ${rankColor}">${index + 1}</div>
+                <div class="disaster-name">${region.region}</div>
+                <div class="disaster-count">${region.total} bencana</div>
+            `;
+            
+            container.appendChild(item);
+        });
     }
     
     updateStats() {
-        // ... (kode tetap sama)
+        const summary = this.getDisasterSummary();
+        
+        console.log('📊 Updating stats:', summary);
+        
+        // Update stat boxes with animation
+        this.animateValue('totalDisasters', 0, summary.totalDisasters, 1500);
+        this.animateValue('affectedRegions', 0, summary.affectedRegions, 1500);
+        this.animateValue('avgDisasters', 0, summary.averagePerRegion, 1500);
+        
+        // Find top disaster type
+        const types = this.getDisasterTypes();
+        const topType = Object.entries(types).reduce((a, b) => a[1] > b[1] ? a : b)[0];
+        document.getElementById('topDisasterType').textContent = topType;
     }
     
     animateValue(elementId, start, end, duration) {
-        // ... (kode tetap sama)
+        const element = document.getElementById(elementId);
+        if (!element) return;
+        
+        const startTime = performance.now();
+        const step = (currentTime) => {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            
+            // Easing function
+            const easeOutQuart = 1 - Math.pow(1 - progress, 4);
+            const currentValue = Math.floor(start + (end - start) * easeOutQuart);
+            
+            element.textContent = currentValue.toLocaleString('id-ID');
+            
+            if (progress < 1) {
+                requestAnimationFrame(step);
+            }
+        };
+        
+        requestAnimationFrame(step);
     }
     
     getDisasterSummary() {
-        // ... (kode tetap sama)
+        const totalDisasters = this.disasterData.reduce((sum, region) => sum + region.total, 0);
+        const affectedRegions = this.disasterData.length;
+        
+        return {
+            totalDisasters,
+            affectedRegions,
+            averagePerRegion: parseFloat((totalDisasters / affectedRegions).toFixed(1))
+        };
     }
     
     getDisasterTypes() {
-        // ... (kode tetap sama)
+        const types = {
+            'Tanah Longsor': 0,
+            'Banjir': 0,
+            'Cuaca Ekstrem': 0,
+            'Gempa Bumi': 0,
+            'Kebakaran Hutan': 0,
+            'Kekeringan': 0,
+            'Lainnya': 0
+        };
+        
+        this.disasterData.forEach(region => {
+            types['Tanah Longsor'] += region.details.tanahLongsor;
+            types['Banjir'] += region.details.banjir;
+            types['Cuaca Ekstrem'] += region.details.cuacaEkstrem;
+            types['Gempa Bumi'] += region.details.gempa;
+            types['Kebakaran Hutan'] += region.details.kebakaran;
+            types['Kekeringan'] += region.details.kekeringan;
+            types['Lainnya'] += region.details.tsunami + region.details.gempaTsunami + 
+                               region.details.gunungApi + region.details.gelombangPasang;
+        });
+        
+        return types;
     }
 }
 
 // Initialize chart manager
 document.addEventListener('DOMContentLoaded', () => {
-    window.chartManager = new ChartManager();
+    console.log('📈 Initializing ChartManager with BPS data...');
     
-    // Log summary to console
-    const summary = window.chartManager.getDisasterSummary();
-    console.log(`📊 Ringkasan Data Bencana Jawa Barat 2024 (Sumber: BPS):`);
-    console.log(`   • Total Bencana: ${summary.totalDisasters}`);
-    console.log(`   • Daerah Terdampak: ${summary.affectedRegions} kabupaten/kota`);
-    console.log(`   • Rata-rata per daerah: ${summary.averagePerRegion} bencana`);
+    // Wait a bit to ensure DOM is fully loaded
+    setTimeout(() => {
+        try {
+            window.chartManager = new ChartManager();
+            
+            // Log summary to console
+            const summary = window.chartManager.getDisasterSummary();
+            console.log(`✅ Ringkasan Data Bencana Jawa Barat 2024 (BPS):`);
+            console.log(`   • Total Bencana: ${summary.totalDisasters}`);
+            console.log(`   • Daerah Terdampak: ${summary.affectedRegions} kabupaten/kota`);
+            console.log(`   • Rata-rata per daerah: ${summary.averagePerRegion} bencana`);
+        } catch (error) {
+            console.error('❌ Error initializing ChartManager:', error);
+            
+            // Show error message in charts
+            const chartContainers = document.querySelectorAll('.chart-container, .top-disasters');
+            chartContainers.forEach(container => {
+                if (container) {
+                    container.innerHTML = '<p style="color: #e63946; text-align: center;">Error loading BPS data. Please refresh the page.</p>';
+                }
+            });
+        }
+    }, 500);
 });
+
+// Fallback if charts don't load
+setTimeout(() => {
+    if (!window.chartManager) {
+        console.warn('⚠️ ChartManager not initialized, attempting fallback...');
+        
+        const disasterChart = document.getElementById('disasterChart');
+        const typeChart = document.getElementById('typeChart');
+        const topDisasters = document.getElementById('topDisasters');
+        
+        if (disasterChart && !disasterChart.chart) {
+            console.log('🔄 Attempting to render fallback charts...');
+            window.chartManager = new ChartManager();
+        }
+    }
+}, 2000);
