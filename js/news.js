@@ -63,7 +63,7 @@ class NewsManager {
                 description: 'Pemerintah Provinsi Jawa Barat mengoptimalkan sistem peringatan dini bencana untuk meminimalisir korban jiwa dan kerugian material.',
                 source: 'bpbd.jabarprov.go.id',
                 date: 'Sabtu, 10 Jan 2026',
-                image: 'https://images.unsplash.com/photo-1589652717521-10c0d092dea9?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80',
+                image: 'https://assets.pikiran-rakyat.com/crop/0x0:0x0/1200x675/photo/2025/12/02/3597885135.jpg',
                 url: 'https://bpbd.jabarprov.go.id'
             }
         ];
