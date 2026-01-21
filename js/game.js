@@ -1,4 +1,4 @@
-// Game Edukasi Simulasi Bencana
+// Game Edukasi Simulasi Bencana - Revisi Lengkap
 
 class DisasterSimulationGame {
     constructor() {
@@ -82,189 +82,241 @@ class DisasterSimulationGame {
         return [
             {
                 id: 1,
-                title: "Pra-Kejadian",
+                title: "Peringatan Dini",
                 description: "BMKG mengeluarkan peringatan potensi gempa susulan setelah gempa utama 6.2 SR. Apa yang Anda lakukan?",
-                context: "Anda baru saja merasakan gempa dengan intensitas sedang. Gempa susulan berpotensi terjadi dalam beberapa jam ke depan.",
+                context: "Gempa utama terjadi 30 menit lalu dengan intensitas 6.2 SR. BMKG memprediksi kemungkinan gempa susulan dalam 2 jam ke depan.",
                 decisions: [
                     {
                         id: "A1",
-                        title: "Siapkan Tas Siaga",
-                        text: "Menyiapkan tas siaga berisi makanan, air, obat-obatan, dan dokumen penting",
+                        title: "Siapkan Tas Siaga dan Evakuasi",
+                        text: "Segera ambil tas siaga yang sudah disiapkan dan mulai evakuasi ke titik kumpul",
                         correct: true,
                         impact: {
-                            preparedness: 25,
-                            injuryRisk: -10,
-                            timeToSafety: -2,
-                            compliance: 15
+                            preparedness: 30,
+                            injuryRisk: -20,
+                            timeToSafety: -5,
+                            compliance: 25
                         },
-                        feedback: "Tepat! Menyiapkan tas siaga mempersingkat waktu evakuasi dan mengurangi risiko."
+                        feedback: "TEPAT! Dengan segera mengambil tas siaga dan evakuasi, Anda mengurangi waktu respon dan risiko terkena gempa susulan. Tas siaga harus berisi: air minum 3L, makanan tahan lama, P3K, senter, radio, dokumen penting, dan uang tunai."
                     },
                     {
                         id: "A2",
-                        title: "Cek Kerusakan Rumah",
-                        text: "Memeriksa seluruh rumah untuk melihat kerusakan struktural",
+                        title: "Periksa Kerusakan Bangunan",
+                        text: "Memeriksa struktur bangunan untuk melihat kerusakan sebelum mengambil tindakan",
                         correct: false,
                         impact: {
                             preparedness: 5,
-                            injuryRisk: 20,
-                            timeToSafety: 5,
-                            compliance: 5
+                            injuryRisk: 40,
+                            timeToSafety: 10,
+                            compliance: -10
                         },
-                        feedback: "Berbahaya! Memeriksa rumah saat masih berpotensi gempa susulan meningkatkan risiko cedera."
+                        feedback: "SALAH! Memeriksa bangunan saat masih berpotensi gempa susulan sangat berbahaya. Struktur bisa runtuh kapan saja. Prioritas utama adalah evakuasi, bukan pemeriksaan."
                     },
                     {
                         id: "A3",
-                        title: "Abaikan Peringatan",
-                        text: "Menganggap gempa susulan tidak akan terjadi dan beraktivitas normal",
+                        title: "Tunggu Instruksi Resmi",
+                        text: "Menunggu instruksi resmi dari pemerintah sebelum melakukan apapun",
+                        correct: false,
+                        impact: {
+                            preparedness: -15,
+                            injuryRisk: 35,
+                            timeToSafety: 15,
+                            compliance: 5
+                        },
+                        feedback: "SALAH! Dalam situasi darurat gempa, waktu sangat berharga. Menunggu instruksi resmi bisa membuat Anda terjebak saat gempa susulan terjadi. Evakuasi proaktif lebih aman."
+                    },
+                    {
+                        id: "A4",
+                        title: "Kumpulkan Barang Berharga",
+                        text: "Mengumpulkan barang elektronik dan dokumen penting sebelum evakuasi",
                         correct: false,
                         impact: {
                             preparedness: -20,
-                            injuryRisk: 30,
-                            timeToSafety: 10,
-                            compliance: -20
+                            injuryRisk: 50,
+                            timeToSafety: 12,
+                            compliance: -15
                         },
-                        feedback: "Sangat berisiko! Mengabaikan peringatan meningkatkan kerentanan saat gempa susulan terjadi."
+                        feedback: "SANGAT BERBAHAYA! Mengumpulkan barang berharga meningkatkan waktu evakuasi dan risiko tertimpa bangunan. Nyawa lebih berharga dari apapun. Tinggalkan barang dan segera evakuasi."
                     }
                 ]
             },
             {
                 id: 2,
-                title: "Saat Kejadian",
-                description: "Gempa susulan terjadi dengan guncangan kuat. Apa tindakan pertama Anda?",
-                context: "Anda sedang berada di lantai dua rumah ketika gempa terjadi. Guncangan cukup kuat membuat perabotan bergeser.",
+                title: "Saat Gempa Terjadi",
+                description: "Gempa susulan terjadi dengan guncangan kuat saat Anda masih di dalam rumah. Apa yang Anda lakukan?",
+                context: "Anda sedang di lantai dua rumah ketika gempa susulan 5.8 SR terjadi. Guncangan sangat kuat, perabotan berjatuhan, dan lampu mati.",
                 decisions: [
                     {
                         id: "B1",
                         title: "Drop - Cover - Hold On",
-                        text: "Berlutut, berlindung di bawah meja yang kokoh, dan berpegangan",
+                        text: "Segera berlindung di bawah meja yang kokoh, pegang kaki meja erat-erat",
                         correct: true,
                         impact: {
-                            preparedness: 15,
+                            preparedness: 25,
+                            injuryRisk: -35,
+                            timeToSafety: 0,
+                            compliance: 30
+                        },
+                        feedback: "TEPAT! Teknik Drop-Cover-Hold On adalah STANDAR INTERNASIONAL untuk menyelamatkan diri saat gempa. Posisi ini melindungi dari benda jatuh dan memberikan stabilitas. Pastikan meja yang dipilih kokoh dan jauh dari jendela."
+                    },
+                    {
+                        id: "B2",
+                        title: "Lari ke Tangga Darurat",
+                        text: "Berlari menuju tangga darurat untuk keluar dari bangunan",
+                        correct: false,
+                        impact: {
+                            preparedness: -25,
+                            injuryRisk: 60,
+                            timeToSafety: 3,
+                            compliance: -20
+                        },
+                        feedback: "SALAH! Berlari saat gempa sangat berbahaya karena: 1) Anda bisa jatuh karena guncangan, 2) Tertimpa benda jatuh, 3) Tangga bisa rusak/roboh. Tetap di tempat dan berlindung lebih aman."
+                    },
+                    {
+                        id: "B3",
+                        title: "Berdiri di Pintu",
+                        text: "Berdiri di bawah kusen pintu yang dianggap paling kuat",
+                        correct: false,
+                        impact: {
+                            preparedness: -10,
+                            injuryRisk: 25,
+                            timeToSafety: 1,
+                            compliance: -15
+                        },
+                        feedback: "MITOS! Konsep 'berdiri di pintu' adalah mitos yang sudah tidak relevan dengan konstruksi modern. Kusen pintu modern tidak lebih kuat dari bagian rumah lain. Drop-Cover-Hold On tetap yang terbaik."
+                    },
+                    {
+                        id: "B4",
+                        title: "Lindungi Kepala dan Leher",
+                        text: "Berlutut dan lindungi kepala dengan tangan sambil mencari tempat aman",
+                        correct: true,
+                        impact: {
+                            preparedness: 20,
                             injuryRisk: -25,
                             timeToSafety: 0,
                             compliance: 20
                         },
-                        feedback: "Tepat! Drop-Cover-Hold On adalah SOP yang direkomendasikan untuk mengurangi risiko cedera."
-                    },
-                    {
-                        id: "B2",
-                        title: "Lari ke Luar",
-                        text: "Segera berlari keluar rumah menuju halaman",
-                        correct: false,
-                        impact: {
-                            preparedness: -10,
-                            injuryRisk: 40,
-                            timeToSafety: 2,
-                            compliance: -15
-                        },
-                        feedback: "Berbahaya! Berlari saat gempa meningkatkan risiko tertimpa atau terjatuh."
-                    },
-                    {
-                        id: "B3",
-                        title: "Menyelamatkan Barang",
-                        text: "Menyelamatkan barang berharga sebelum mencari perlindungan",
-                        correct: false,
-                        impact: {
-                            preparedness: -15,
-                            injuryRisk: 50,
-                            timeToSafety: 5,
-                            compliance: -20
-                        },
-                        feedback: "Sangat berisiko! Keselamatan jiwa harus menjadi prioritas utama."
+                        feedback: "BENAR! Melindungi kepala dan leher adalah prioritas utama. Area ini paling rentan terhadap cedera fatal. Kombinasi berlindung dan melindungi kepala memberikan perlindungan optimal."
                     }
                 ]
             },
             {
                 id: 3,
-                title: "Evakuasi",
-                description: "Guncangan sudah berhenti. Apa yang Anda lakukan untuk evakuasi?",
-                context: "Gempa telah berhenti, tetapi masih ada potensi gempa susulan dan kerusakan bangunan.",
+                title: "Evakuasi Pasca-Gempa",
+                description: "Guncangan sudah berhenti. Bangunan mulai retak dan berdebu. Bagaimana Anda mengevakuasi?",
+                context: "Gempa telah berhenti, tetapi masih ada suara retakan. Listrik padam, dan asap terlihat dari bangunan tetangga.",
                 decisions: [
                     {
                         id: "C1",
-                        title: "Evakuasi ke Titik Kumpul",
-                        text: "Mengambil tas siaga dan menuju titik kumpul yang telah ditentukan",
+                        title: "Ambil Tas Siaga, Evakuasi ke Titik Kumpul",
+                        text: "Ambil tas siaga jika dekat, evakuasi ke titik kumpul melalui rute aman",
                         correct: true,
                         impact: {
-                            preparedness: 20,
-                            injuryRisk: -15,
-                            timeToSafety: -5,
-                            compliance: 25
+                            preparedness: 30,
+                            injuryRisk: -20,
+                            timeToSafety: -8,
+                            compliance: 35
                         },
-                        feedback: "Tepat! Evakuasi terorganisir ke titik kumpul mengurangi waktu pencarian bantuan."
+                        feedback: "TEPAT! Evakuasi terorganisir ke titik kumpul memudahkan tim SAR menemukan Anda. Tas siaga memastikan kebutuhan dasar terpenuhi. Rute evakuasi harus menghindari: bangunan tinggi, tiang listrik, jembatan, dan tebing."
                     },
                     {
                         id: "C2",
-                        title: "Tunggu di Dalam",
-                        text: "Tetap di dalam rumah menunggu keadaan benar-benar aman",
+                        title: "Cari Keluarga di Dalam Rumah",
+                        text: "Mencari anggota keluarga yang masih di dalam rumah sebelum evakuasi",
                         correct: false,
                         impact: {
-                            preparedness: 0,
-                            injuryRisk: 25,
+                            preparedness: -5,
+                            injuryRisk: 45,
                             timeToSafety: 15,
-                            compliance: -10
+                            compliance: 0
                         },
-                        feedback: "Berisiko! Bangunan bisa runtuh akibat gempa susulan."
+                        feedback: "BERRISIKO! Pencarian tanpa pelatihan bisa membahayakan Anda dan korban. Sistem komunikasi keluarga harus ditetapkan SEBELUM bencana: 1) Titik kumpul darurat, 2) Kontak darurat, 3) Rute evakuasi."
                     },
                     {
                         id: "C3",
-                        title: "Cari Keluarga",
-                        text: "Mencari anggota keluarga di dalam rumah sebelum evakuasi",
+                        title: "Gunakan Lift untuk Cepat Keluar",
+                        text: "Menggunakan lift untuk cepat mencapai lantai dasar",
                         correct: false,
                         impact: {
-                            preparedness: 5,
-                            injuryRisk: 30,
-                            timeToSafety: 10,
-                            compliance: 5
+                            preparedness: -30,
+                            injuryRisk: 70,
+                            timeToSafety: 2,
+                            compliance: -25
                         },
-                        feedback: "Berbahaya! Komunikasi pra-kejadian penting untuk menentukan titik temu."
+                        feedback: "SANGAT BERBAHAYA! Lift adalah JEBAKAN MAUT saat gempa: 1) Bisa mati mendadak, 2) Terjebak di antara lantai, 3) Kabel bisa putus. SELALU gunakan tangga darurat, bahkan di lantai tinggi."
+                    },
+                    {
+                        id: "C4",
+                        title: "Tunggu di Tempat Sampai Bantuan Datang",
+                        text: "Tetap di dalam rumah menunggu tim penyelamat",
+                        correct: false,
+                        impact: {
+                            preparedness: -20,
+                            injuryRisk: 40,
+                            timeToSafety: 30,
+                            compliance: -10
+                        },
+                        feedback: "SALAH! Evakuasi mandiri lebih efektif jika memungkinkan. Tim SAR memprioritaskan korban yang terjebak/tidak bisa evakuasi sendiri. Jika bisa evakuasi, lakukan untuk mengurangi beban tim penyelamat."
                     }
                 ]
             },
             {
                 id: 4,
-                title: "Pasca-Kejadian",
-                description: "Anda telah sampai di titik kumpul. Apa langkah komunikasi yang tepat?",
-                context: "Anda berada di titik kumpul bersama warga lainnya. Sinyal telepon masih tersedia.",
+                title: "Komunikasi dan Bantuan",
+                description: "Anda telah sampai di titik kumpul. Banyak warga panik dan terluka. Apa yang Anda lakukan?",
+                context: "Titik kumpul sudah diisi 50+ warga. Beberapa terluka, anak-anak menangis. Sinyal telepon lemah.",
                 decisions: [
                     {
                         id: "D1",
-                        title: "Hubungi 112",
-                        text: "Menghubungi nomor darurat 112 untuk melaporkan lokasi dan kebutuhan",
+                        title: "Hubungi 112 dan Berikan Informasi Akurat",
+                        text: "Hubungi 112, berikan lokasi, jumlah korban, dan kebutuhan mendesak",
                         correct: true,
                         impact: {
-                            preparedness: 10,
-                            injuryRisk: -5,
-                            timeToSafety: -2,
-                            compliance: 30
+                            preparedness: 15,
+                            injuryRisk: -10,
+                            timeToSafety: -5,
+                            compliance: 40
                         },
-                        feedback: "Tepat! 112 adalah nomor darurat terpadu untuk koordinasi bantuan."
+                        feedback: "TEPAT! 112 adalah nomor darurat terpadu. Informasi yang akurat membantu prioritisasi bantuan: 1) Lokasi GPS, 2) Jumlah korban, 3) Kondisi cedera, 4) Kebutuhan mendesak (obat, selimut, air)."
                     },
                     {
                         id: "D2",
                         title: "Sebarkan Info di Media Sosial",
-                        text: "Membagikan informasi dan foto di media sosial untuk viral",
+                        text: "Posting foto dan video di media sosial untuk menarik perhatian",
                         correct: false,
                         impact: {
-                            preparedness: -5,
-                            injuryRisk: 0,
+                            preparedness: -15,
+                            injuryRisk: 5,
                             timeToSafety: 0,
-                            compliance: -25
+                            compliance: -30
                         },
-                        feedback: "Tidak tepat! Informasi yang tidak terverifikasi bisa menimbulkan kepanikan."
+                        feedback: "SALAH! Media sosial sering menyebar informasi tidak akurat dan menimbulkan kepanikan. Gunakan saluran resmi: 1) 112 untuk darurat, 2) Radio darurat, 3) Aplikasi resmi BPBD/BNPB."
                     },
                     {
                         id: "D3",
-                        title: "Pulang ke Rumah",
-                        text: "Kembali ke rumah untuk melihat kerusakan",
+                        title: "Bantu Korban dengan P3K Dasar",
+                        text: "Memberikan pertolongan pertama sesuai kemampuan dengan P3K tas siaga",
+                        correct: true,
+                        impact: {
+                            preparedness: 20,
+                            injuryRisk: -15,
+                            timeToSafety: -3,
+                            compliance: 25
+                        },
+                        feedback: "BENAR! Pertolongan pertama dasar menyelamatkan nyawa. Prioritaskan: 1) Hentikan pendarahan, 2) Jaga jalan napas, 3) Rawat luka bakar. Hanya lakukan yang sesuai kemampuan untuk hindari kesalahan fatal."
+                    },
+                    {
+                        id: "D4",
+                        title: "Kembali ke Rumah Ambil Barang",
+                        text: "Kembali ke rumah untuk mengambil barang yang tertinggal",
                         correct: false,
                         impact: {
-                            preparedness: -10,
-                            injuryRisk: 20,
-                            timeToSafety: 5,
-                            compliance: -15
+                            preparedness: -25,
+                            injuryRisk: 55,
+                            timeToSafety: 20,
+                            compliance: -20
                         },
-                        feedback: "Berbahaya! Bangunan masih berpotensi runtuh dan zona belum dinyatakan aman."
+                        feedback: "SANGAT BERBAHAYA! Kembali ke zona bencana tanpa izin tim SAR: 1) Bangunan bisa runtuh kapan saja, 2) Menghambat operasi penyelamatan, 3) Menambah korban. Tunggu pengumuman resmi 'zona aman'."
                     }
                 ]
             }
@@ -275,71 +327,98 @@ class DisasterSimulationGame {
         return [
             {
                 id: 1,
-                title: "Pra-Kejadian",
-                description: "BMKG mengeluarkan peringatan hujan lebat selama 3 hari berturut-turut. Apa tindakan Anda?",
+                title: "Peringatan Banjir Bandang",
+                description: "BMKG mengeluarkan peringatan banjir bandang level merah. Air mulai naik cepat. Apa tindakan Anda?",
+                context: "Hujan deras 4 jam non-stop. Sungai meluap, air masuk ke permukiman dengan kecepatan 10cm/jam.",
                 decisions: [
                     {
                         id: "A1",
-                        title: "Siapkan Tas Siaga",
-                        text: "Menyiapkan tas siaga berisi makanan, air, dan dokumen penting",
+                        title: "Matikan Listrik dan Evakuasi",
+                        text: "Segera matikan MCB listrik, ambil tas siaga, evakuasi ke tempat tinggi",
                         correct: true,
-                        impact: { preparedness: 30, injuryRisk: -15, timeToSafety: -3, compliance: 20 }
+                        impact: {
+                            preparedness: 35,
+                            injuryRisk: -25,
+                            timeToSafety: -6,
+                            compliance: 30
+                        },
+                        feedback: "TEPAT! Matikan listrik menghindari konsleting dan sengatan listrik. Evakuasi dini ke tempat tinggi mengurangi risiko tersapu arus. Tas siaga banjir harus tahan air dan mengapung."
                     },
                     {
                         id: "A2",
-                        title: "Tinggikan Barang Berharga",
-                        text: "Memindahkan barang elektronik dan berharga ke tempat tinggi",
-                        correct: true,
-                        impact: { preparedness: 15, injuryRisk: -5, timeToSafety: 2, compliance: 10 }
-                    },
-                    {
-                        id: "A3",
-                        title: "Abaikan Peringatan",
-                        text: "Menganggap banjir tidak akan terjadi di wilayah Anda",
+                        title: "Buat Tanggul Darurat",
+                        text: "Menggunakan karung pasir untuk menahan air masuk ke rumah",
                         correct: false,
-                        impact: { preparedness: -25, injuryRisk: 35, timeToSafety: 10, compliance: -25 }
+                        impact: {
+                            preparedness: 10,
+                            injuryRisk: 40,
+                            timeToSafety: 25,
+                            compliance: -5
+                        },
+                        feedback: "SALAH! Membuat tanggul saat banjir sudah masuk sangat berbahaya. Tenaga terkuras, waktu evakuasi berkurang. Tanggul hanya efektif jika dibuat SEBELUM banjir datang."
                     }
                 ]
             },
             {
                 id: 2,
-                title: "Saat Kejadian",
-                description: "Air mulai masuk ke dalam rumah dengan cepat. Apa yang Anda lakukan?",
+                title: "Tersapu Arus Banjir",
+                description: "Anda terjebak di arus banjir saat menuju tempat evakuasi. Bagaimana menyelamatkan diri?",
+                context: "Arus banjir setinggi dada dengan kecepatan tinggi membawa sampah dan puing.",
                 decisions: [
                     {
                         id: "B1",
-                        title: "Matikan Listrik",
-                        text: "Segera mematikan listrik utama untuk mencegah konsleting",
+                        title: "Berpegangan pada Benda Kokoh",
+                        text: "Cari tiang/pohon yang kokoh, berpegangan erat sambil berteriak minta tolong",
                         correct: true,
-                        impact: { preparedness: 20, injuryRisk: -20, timeToSafety: 0, compliance: 25 }
-                    },
-                    {
-                        id: "B2",
-                        title: "Menyelamatkan Barang",
-                        text: "Menyelamatkan barang-barang sebelum air naik",
-                        correct: false,
-                        impact: { preparedness: -10, injuryRisk: 40, timeToSafety: 5, compliance: -10 }
+                        impact: {
+                            preparedness: 25,
+                            injuryRisk: -30,
+                            timeToSafety: 5,
+                            compliance: 25
+                        },
+                        feedback: "TEPAT! Berpegangan pada benda kokoh mencegah terseret arus. Angkat kaki untuk mengurangi daya seret. Jangan melawan arus - hemat tenaga untuk bertahan sampai bantuan datang."
                     }
                 ]
             },
             {
                 id: 3,
-                title: "Evakuasi",
-                description: "Air sudah setinggi pinggang. Bagaimana Anda mengevakuasi?",
+                title: "Evakuasi dengan Perahu",
+                description: "Tim SAR datang dengan perahu karet. Bagaimana cara naik yang aman?",
+                context: "Perahu SAR mendekat, arus masih kuat, kapasitas perahu terbatas.",
                 decisions: [
                     {
                         id: "C1",
-                        title: "Gunakan Perahu",
-                        text: "Menggunakan perahu atau pelampung darurat",
+                        title: "Tunggu Instruksi, Naik Perlahan",
+                        text: "Tunggu instruksi tim SAR, naik satu per satu dengan bantuan mereka",
                         correct: true,
-                        impact: { preparedness: 25, injuryRisk: -20, timeToSafety: -8, compliance: 30 }
-                    },
+                        impact: {
+                            preparedness: 30,
+                            injuryRisk: -20,
+                            timeToSafety: -10,
+                            compliance: 35
+                        },
+                        feedback: "TEPAT! Mengikuti instruksi tim SAR sangat penting. Kepanikan bisa membuat perahu oleng. Prioritas naik: anak-anak, lansia, ibu hamil, kemudian dewasa."
+                    }
+                ]
+            },
+            {
+                id: 4,
+                title: "Pasca Banjir - Kesehatan",
+                description: "Air mulai surut. Apa yang harus diperhatikan untuk kesehatan?",
+                context: "Genangan air kotor, sampah berserakan, bau busuk mulai tercium.",
+                decisions: [
                     {
-                        id: "C2",
-                        title: "Berjalan di Air",
-                        text: "Berjalan melalui air banjir menuju tempat tinggi",
-                        correct: false,
-                        impact: { preparedness: -15, injuryRisk: 50, timeToSafety: 5, compliance: -20 }
+                        id: "D1",
+                        title: "Hindari Kontak Air, Gunakan APD",
+                        text: "Gunakan sepatu boot dan sarung tangan, hindari kontak langsung dengan air",
+                        correct: true,
+                        impact: {
+                            preparedness: 20,
+                            injuryRisk: -25,
+                            timeToSafety: -2,
+                            compliance: 30
+                        },
+                        feedback: "TEPAT! Air banjir mengandung: bakteri E.coli, leptospirosis, bahan kimia berbahaya. APD minimal: sepatu boot, sarung tangan karet, masker. Segera mandi dengan sabun setelah kontak."
                     }
                 ]
             }
@@ -350,22 +429,43 @@ class DisasterSimulationGame {
         return [
             {
                 id: 1,
-                title: "Pra-Kejadian",
-                description: "Anda melihat retakan tanah di lereng bukit dekat rumah. Apa tindakan Anda?",
+                title: "Deteksi Dini Longsor",
+                description: "Anda melihat tanda-tanda awal longsor di bukit dekat rumah. Apa yang dilakukan?",
+                context: "Retakan tanah 5cm lebar muncul, pohon miring 30 derajat, air keruh keluar dari tanah.",
                 decisions: [
                     {
                         id: "A1",
-                        title: "Laporkan ke BPBD",
-                        text: "Segera melaporkan ke BPBD setempat",
+                        title: "Laporkan dan Evakuasi Segera",
+                        text: "Laporkan ke BPBD setempat via telepon, kemudian evakuasi keluarga",
                         correct: true,
-                        impact: { preparedness: 25, injuryRisk: -20, timeToSafety: -2, compliance: 30 }
-                    },
+                        impact: {
+                            preparedness: 40,
+                            injuryRisk: -30,
+                            timeToSafety: -8,
+                            compliance: 35
+                        },
+                        feedback: "TEPAT! Longsor bisa terjadi tiba-tiba. Evakuasi dini menyelamatkan nyawa. Laporkan detail: lokasi GPS, lebar retakan, arah kemiringan pohon. BPBD akan memantau dan evakuasi warga lain."
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: "Saat Longsor Terjadi",
+                description: "Tanah mulai bergerak cepat menuju rumah. Waktu sangat terbatas!",
+                context: "Suara gemuruh dari bukit, tanah bergerak 2m/menit, rumah mulai retak.",
+                decisions: [
                     {
-                        id: "A2",
-                        title: "Abaikan Saja",
-                        text: "Menganggap retakan itu normal",
-                        correct: false,
-                        impact: { preparedness: -20, injuryRisk: 40, timeToSafety: 10, compliance: -25 }
+                        id: "B1",
+                        title: "Lari Tegak Lurus dari Arah Longsor",
+                        text: "Lari ke samping (tegak lurus) arah longsor menuju tanah stabil",
+                        correct: true,
+                        impact: {
+                            preparedness: 35,
+                            injuryRisk: -40,
+                            timeToSafety: -5,
+                            compliance: 30
+                        },
+                        feedback: "TEPAT! Berlari tegak lurus dari arah longsor adalah satu-satunya cara selamat. Jangan lari searah atau berlawanan arah - Anda tidak bisa mengalahkan kecepatan longsor (bisa mencapai 50km/jam!)."
                     }
                 ]
             }
@@ -376,15 +476,43 @@ class DisasterSimulationGame {
         return [
             {
                 id: 1,
-                title: "Pra-Kejadian",
-                description: "BMKG mengeluarkan peringatan angin kencang dan petir. Apa yang Anda lakukan?",
+                title: "Peringatan Angin Puting Beliung",
+                description: "BMKG keluarkan peringatan angin puting beliung. Langit menghitam cepat. Tindakan?",
+                context: "Kecepatan angin meningkat drastis, debu berterbangan, tekanan udara turun tiba-tiba.",
                 decisions: [
                     {
                         id: "A1",
-                        title: "Amankan Barang Luar",
-                        text: "Mengamankan barang-barang di luar rumah yang bisa terbang",
+                        title: "Masuk Ruangan Bebas Jendela",
+                        text: "Cari ruangan di tengah bangunan tanpa jendela (bathroom, closet)",
                         correct: true,
-                        impact: { preparedness: 20, injuryRisk: -15, timeToSafety: -1, compliance: 15 }
+                        impact: {
+                            preparedness: 30,
+                            injuryRisk: -35,
+                            timeToSafety: -3,
+                            compliance: 25
+                        },
+                        feedback: "TEPAT! Ruangan tanpa jendela melindungi dari serpihan kaca yang beterbangan dengan kecepatan tinggi. Jauhi jendela, pintu eksterior, dan dinding luar. Lindungi kepala dengan bantal atau helm."
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: "Sambaran Petir",
+                description: "Petir menyambar sekitar rumah selama badai. Bagaimana menghindari sambaran?",
+                context: "Petir menyambar setiap 10 detik, listrik padam, bau ozon tercium.",
+                decisions: [
+                    {
+                        id: "B1",
+                        title: "Jauhi Logam dan Air",
+                        text: "Jauhi pipa air, kabel listrik, peralatan elektronik, dan air mengalir",
+                        correct: true,
+                        impact: {
+                            preparedness: 25,
+                            injuryRisk: -30,
+                            timeToSafety: 0,
+                            compliance: 20
+                        },
+                        feedback: "TEPAT! Logam dan air menghantarkan listrik petir. Jangan: 1) Mandi/bekerja dengan air, 2) Pakai telepon kabel, 3) Sentuh peralatan elektronik. Tunggu 30 menit setelah petir terakhir sebelum beraktivitas normal."
                     }
                 ]
             }
@@ -393,7 +521,7 @@ class DisasterSimulationGame {
     
     init() {
         this.bindEvents();
-        this.updateTimer();
+        console.log('🎮 Game Disaster Simulation initialized');
     }
     
     bindEvents() {
@@ -448,13 +576,9 @@ class DisasterSimulationGame {
         // Hide selection phase
         document.getElementById('phase-selection').classList.remove('active');
         
-        // Show game progress
+        // Show game elements
         document.getElementById('game-progress').style.display = 'block';
-        
-        // Show game content
         document.getElementById('game-content').style.display = 'block';
-        
-        // Show game controls
         document.getElementById('game-controls').style.display = 'flex';
         
         // Load first phase
@@ -503,6 +627,13 @@ class DisasterSimulationGame {
         // Update scores display
         this.updateScores();
         
+        // Reset decision
+        this.currentDecision = null;
+        
+        // Enable/disable buttons
+        document.getElementById('btn-next').disabled = true;
+        document.getElementById('btn-prev').disabled = (this.currentPhase === 1);
+        
         // Create phase content
         const content = document.getElementById('game-content');
         content.innerHTML = this.createPhaseContent(phase);
@@ -523,7 +654,7 @@ class DisasterSimulationGame {
                 
                 ${phase.context ? `
                     <div class="scenario-context">
-                        <h4><i class="fas fa-info-circle"></i> Konteks Situasi</h4>
+                        <h4><i class="fas fa-info-circle"></i> Situasi Saat Ini</h4>
                         <p class="context-text">${phase.context}</p>
                     </div>
                 ` : ''}
@@ -536,7 +667,7 @@ class DisasterSimulationGame {
                                 <h4 class="decision-title">${decision.title}</h4>
                             </div>
                             <p class="decision-text">${decision.text}</p>
-                            <span class="decision-impact">Pilih keputusan ini</span>
+                            <span class="decision-impact">Klik untuk memilih</span>
                         </div>
                     `).join('')}
                 </div>
@@ -544,7 +675,7 @@ class DisasterSimulationGame {
                 <div class="feedback-container" id="feedback-container" style="display: none;">
                     <div class="feedback-header">
                         <i class="fas fa-comment-dots"></i>
-                        <h4>Feedback</h4>
+                        <h4>Analisis Jawaban</h4>
                     </div>
                     <p class="feedback-text" id="feedback-text"></p>
                     <div class="feedback-impact" id="feedback-impact"></div>
@@ -572,6 +703,9 @@ class DisasterSimulationGame {
         const decision = phase.decisions.find(d => d.id === decisionId);
         
         if (!decision) return;
+        
+        // Store decision
+        this.currentDecision = decision;
         
         // Store decision in history
         this.phaseHistory.push({
@@ -642,10 +776,12 @@ class DisasterSimulationGame {
         const feedbackText = document.getElementById('feedback-text');
         const feedbackImpact = document.getElementById('feedback-impact');
         
-        feedbackText.textContent = decision.feedback || "Keputusan telah dicatat.";
+        feedbackText.textContent = decision.feedback;
         
         // Create impact summary
         let impactHTML = '';
+        
+        // Preparedness impact
         if (decision.impact.preparedness !== 0) {
             const sign = decision.impact.preparedness > 0 ? '+' : '';
             impactHTML += `
@@ -658,18 +794,20 @@ class DisasterSimulationGame {
             `;
         }
         
+        // Injury risk impact
         if (decision.impact.injuryRisk !== 0) {
             const sign = decision.impact.injuryRisk > 0 ? '+' : '';
             impactHTML += `
                 <div class="impact-item">
                     <span class="impact-label">Risiko Cedera</span>
                     <span class="impact-value ${decision.impact.injuryRisk < 0 ? 'positive' : 'negative'}">
-                        ${sign}${decision.impact.injuryRisk}
+                        ${sign}${Math.abs(decision.impact.injuryRisk)}
                     </span>
                 </div>
             `;
         }
         
+        // Time to safety impact
         if (decision.impact.timeToSafety !== 0) {
             const sign = decision.impact.timeToSafety > 0 ? '+' : '';
             impactHTML += `
@@ -682,6 +820,7 @@ class DisasterSimulationGame {
             `;
         }
         
+        // Compliance impact
         if (decision.impact.compliance !== 0) {
             const sign = decision.impact.compliance > 0 ? '+' : '';
             impactHTML += `
@@ -710,13 +849,13 @@ class DisasterSimulationGame {
         const correctDecisions = phase.decisions.filter(d => d.correct);
         
         if (correctDecisions.length > 0) {
-            alert(`💡 Petunjuk:\n\nPada fase ini, perhatikan:\n"${correctDecisions[0].text}"\n\nKeputusan ini akan memberikan dampak positif pada skor Anda.`);
+            alert(`💡 PETUNJUK:\n\nFase ini menguji: "${phase.title}"\n\nPrinsip dasar: ${correctDecisions[0].text}\n\nPertimbangkan faktor keselamatan, waktu, dan kepatuhan pada prosedur.`);
         }
     }
     
     nextPhase() {
-        if (this.currentDecision === null && this.gameStarted) {
-            alert('Pilih keputusan terlebih dahulu sebelum melanjutkan!');
+        if (!this.currentDecision && this.gameStarted) {
+            alert('Silakan pilih jawaban terlebih dahulu sebelum melanjutkan!');
             return;
         }
         
@@ -734,7 +873,11 @@ class DisasterSimulationGame {
     
     previousPhase() {
         if (this.currentPhase > 1) {
+            // Remove last decision from history
+            this.phaseHistory = this.phaseHistory.filter(h => h.phase !== this.currentPhase);
+            
             this.currentPhase--;
+            this.currentDecision = null;
             this.loadPhase();
         }
     }
@@ -767,7 +910,7 @@ class DisasterSimulationGame {
         const totalScore = Math.round(
             (this.score.preparedness * 0.3) +
             ((100 - this.score.injuryRisk) * 0.3) +
-            (Math.max(0, 100 - this.score.timeToSafety * 2) * 0.2) +
+            (Math.max(0, 100 - this.score.timeToSafety) * 0.2) +
             (this.score.compliance * 0.2)
         );
         
@@ -777,7 +920,7 @@ class DisasterSimulationGame {
         
         if (totalScore >= 80) {
             badge = "siaga";
-            badgeText = "Siaga";
+            badgeText = "SIAGA";
         } else if (totalScore >= 60) {
             badge = "waspada";
             badgeText = "Waspada";
@@ -814,7 +957,7 @@ class DisasterSimulationGame {
                                worstDecision.impact.injuryRisk + 
                                (worstDecision.impact.compliance || 0);
             document.querySelector('#worst-decision .decision-impact').textContent = 
-                `${worstDecision.impact.preparedness < 0 ? '' : '+'}${worstImpact} Skor`;
+                `${worstImpact} Skor`;
         }
         
         // Update SOP list
@@ -878,6 +1021,7 @@ class DisasterSimulationGame {
     
     restartGame() {
         // Reset game state
+        this.currentScenario = null;
         this.currentPhase = 0;
         this.currentDecision = null;
         this.score = {
@@ -892,14 +1036,27 @@ class DisasterSimulationGame {
         clearInterval(this.timerInterval);
         this.startTime = null;
         
+        // Reset scenario selection
+        document.querySelectorAll('.scenario-card').forEach(card => {
+            card.classList.remove('active');
+        });
+        
         // Hide results screen
         document.getElementById('phase-results').classList.remove('active');
+        
+        // Hide game elements
+        document.getElementById('game-progress').style.display = 'none';
+        document.getElementById('game-content').style.display = 'none';
+        document.getElementById('game-controls').style.display = 'none';
         
         // Show selection screen
         document.getElementById('phase-selection').classList.add('active');
         
         // Reset timer display
         document.getElementById('timer').textContent = '00:00';
+        
+        // Reset scores display
+        this.updateScores();
         
         console.log('Game restarted');
     }
@@ -909,11 +1066,11 @@ class DisasterSimulationGame {
         const totalScore = document.getElementById('total-score').textContent;
         const badge = document.getElementById('result-badge').textContent;
         
-        const shareText = `🎮 Hasil Simulasi Bencana Jabar Siaga\n\n` +
+        const shareText = `🎮 HASIL SIMULASI BENCANA - JABAR SIAGA\n\n` +
                          `Skenario: ${scenario.name}\n` +
                          `Skor Total: ${totalScore}/100\n` +
                          `Status: ${badge}\n\n` +
-                         `Latih kemampuanmu di: ${window.location.href}`;
+                         `Tingkatkan kesiapsiagaan Anda di: ${window.location.href}`;
         
         if (navigator.share) {
             navigator.share({
@@ -947,4 +1104,12 @@ document.addEventListener('DOMContentLoaded', () => {
     
     console.log('🚨 Disaster Simulation Game Loaded');
     console.log('🎮 Ready for training scenarios');
+});
+
+// Handle window resize for responsive design
+window.addEventListener('resize', () => {
+    if (window.game && window.game.gameStarted) {
+        // Re-render phase content if needed
+        window.game.loadPhase();
+    }
 });
