@@ -1,34 +1,25 @@
-// Main JavaScript File - Jabar Siaga Portal WebGIS Kebencanaan
+// Main JavaScript File - Jabar Siaga
 
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all components
     initLoadingScreen();
     initNavigation();
     initSmoothScroll();
-    initLazyLoading();
+    initButtonActions();
     initFullscreenMaps();
     initRippleButtons();
-    initButtonFunctions();
     
-    // Initialize infografis
-    if (typeof window.initInfografis === 'function') {
-        window.initInfografis();
-    }
-    
-    // Initialize dashboard charts
-    initDashboardCharts();
-    
-    // Show system notice in console
-    console.log('%c🌐 Jabar Siaga - Portal WebGIS Kebencanaan Jawa Barat', 'color: #0066cc; font-size: 16px; font-weight: bold;');
-    console.log('%cSistem Informasi 7 Peta Rawan Bencana Jawa Barat', 'color: #ff6600;');
-    console.log('%cData KRB 27 kabupaten/kota tersedia untuk analisis risiko', 'color: #2a9d8f;');
+    // Show console welcome message
+    console.log('%c🚨 Jabar Siaga - Portal Kebencanaan Jawa Barat', 'color: #0066cc; font-size: 18px; font-weight: bold;');
+    console.log('%c7 Peta Rawan Bencana | Sistem Pemantauan Real-time', 'color: #ff6600;');
+    console.log('%cData resmi BPBD, BNPB, dan BMKG', 'color: #2a9d8f;');
 });
 
 // Loading Screen Management
 function initLoadingScreen() {
     const loadingScreen = document.getElementById('loadingScreen');
     
-    // Simulate minimum loading time for better UX
+    // Minimum loading time for better UX
     setTimeout(() => {
         loadingScreen.classList.add('hidden');
         
@@ -73,18 +64,7 @@ function initNavigation() {
             if (href.startsWith('#')) {
                 e.preventDefault();
                 const targetId = href.substring(1);
-                const targetElement = document.getElementById(targetId);
-                
-                if (targetElement) {
-                    const headerOffset = 80;
-                    const elementPosition = targetElement.getBoundingClientRect().top;
-                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                    
-                    window.scrollTo({
-                        top: offsetPosition,
-                        behavior: 'smooth'
-                    });
-                }
+                scrollToSection(targetId);
             }
         });
     });
@@ -132,15 +112,8 @@ function initSmoothScroll() {
             
             if (targetElement) {
                 e.preventDefault();
-                
-                const headerOffset = 80;
-                const elementPosition = targetElement.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
+                const targetIdClean = targetId.substring(1);
+                scrollToSection(targetIdClean);
             }
         });
     });
@@ -160,101 +133,37 @@ function initSmoothScroll() {
     }
 }
 
-// Initialize Button Functions
-function initButtonFunctions() {
-    // Akses Peta button
-    const aksesPetaBtn = document.getElementById('aksesPetaBtn');
-    if (aksesPetaBtn) {
-        aksesPetaBtn.addEventListener('click', () => {
-            const mapsSection = document.getElementById('maps');
-            if (mapsSection) {
-                const headerOffset = 80;
-                const elementPosition = mapsSection.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-                
-                // Update active navigation
-                document.querySelectorAll('.nav-link').forEach(link => {
-                    link.classList.remove('active');
-                });
-                document.querySelector('a[href="#maps"]').classList.add('active');
-            }
-        });
-    }
-    
-    // Dashboard button
-    const dashboardBtn = document.getElementById('dashboardBtn');
-    if (dashboardBtn) {
-        dashboardBtn.addEventListener('click', () => {
-            const dashboardSection = document.getElementById('dashboard');
-            if (dashboardSection) {
-                const headerOffset = 80;
-                const elementPosition = dashboardSection.getBoundingClientRect().top;
-                const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
-                
-                window.scrollTo({
-                    top: offsetPosition,
-                    behavior: 'smooth'
-                });
-                
-                // Update active navigation
-                document.querySelectorAll('.nav-link').forEach(link => {
-                    link.classList.remove('active');
-                });
-                document.querySelector('a[href="#dashboard"]').classList.add('active');
-            }
+function scrollToSection(sectionId) {
+    const targetElement = document.getElementById(sectionId);
+    if (targetElement) {
+        const headerOffset = 80;
+        const elementPosition = targetElement.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+        
+        window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
         });
     }
 }
 
-// Lazy Loading for 3D Map
-function initLazyLoading() {
-    const lazyIframes = document.querySelectorAll('.lazy-load');
-    const loadButtons = document.querySelectorAll('.load-map-btn');
-    
-    // Load iframe when button is clicked
-    loadButtons.forEach(button => {
-        button.addEventListener('click', function() {
-            const container = this.closest('.lazy-load-placeholder');
-            const iframe = container.previousElementSibling;
-            
-            if (iframe && iframe.dataset.src) {
-                iframe.src = iframe.dataset.src;
-                container.style.opacity = '0';
-                
-                setTimeout(() => {
-                    container.style.display = 'none';
-                }, 400);
-            }
+// Button Actions
+function initButtonActions() {
+    // Access Map Button
+    const accessMapBtn = document.getElementById('accessMapBtn');
+    if (accessMapBtn) {
+        accessMapBtn.addEventListener('click', () => {
+            scrollToSection('maps');
         });
-    });
+    }
     
-    // Load iframe when scrolled into view
-    const lazyObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const iframe = entry.target;
-                
-                if (iframe.dataset.src) {
-                    // Small delay for better UX
-                    setTimeout(() => {
-                        iframe.src = iframe.dataset.src;
-                        iframe.classList.remove('lazy-load');
-                    }, 300);
-                }
-                
-                lazyObserver.unobserve(iframe);
-            }
+    // Dashboard Button
+    const dashboardBtn = document.getElementById('dashboardBtn');
+    if (dashboardBtn) {
+        dashboardBtn.addEventListener('click', () => {
+            scrollToSection('dashboard');
         });
-    }, { rootMargin: '100px' });
-    
-    lazyIframes.forEach(iframe => {
-        lazyObserver.observe(iframe);
-    });
+    }
 }
 
 // Fullscreen Map Functionality
@@ -321,7 +230,7 @@ function closeFullscreenMap() {
 
 // Ripple Button Effect
 function initRippleButtons() {
-    const buttons = document.querySelectorAll('.glow-button, .outline-button, .map-action-btn');
+    const buttons = document.querySelectorAll('.glow-button, .outline-button');
     
     buttons.forEach(button => {
         button.addEventListener('click', function(e) {
@@ -353,194 +262,6 @@ function initRippleButtons() {
     });
 }
 
-// Dashboard Charts
-function initDashboardCharts() {
-    // Wait for KRB data to be loaded
-    if (!window.krbData || !window.krbData.length) {
-        setTimeout(initDashboardCharts, 500);
-        return;
-    }
-    
-    // Chart 1: Distribution of Risk Levels
-    const riskDistributionChart = document.getElementById('riskDistributionChart');
-    if (riskDistributionChart) {
-        createRiskDistributionChart();
-    }
-    
-    // Chart 2: Average Index by Disaster Type
-    const bencanaChart = document.getElementById('bencanaChart');
-    if (bencanaChart) {
-        createBencanaChart();
-    }
-}
-
-function createRiskDistributionChart() {
-    const ctx = document.getElementById('riskDistributionChart').getContext('2d');
-    
-    // Calculate risk levels for all cities
-    let rendah = 0, sedang = 0, tinggi = 0;
-    
-    window.krbData.forEach(city => {
-        const avgRisk = calculateAverageRisk(city);
-        if (avgRisk <= 3) rendah++;
-        else if (avgRisk <= 6) sedang++;
-        else tinggi++;
-    });
-    
-    new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-            labels: ['Rendah', 'Sedang', 'Tinggi'],
-            datasets: [{
-                data: [rendah, sedang, tinggi],
-                backgroundColor: [
-                    '#2a9d8f',
-                    '#f4a261',
-                    '#e63946'
-                ],
-                borderWidth: 2,
-                borderColor: 'rgba(255, 255, 255, 0.1)'
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    position: 'bottom',
-                    labels: {
-                        color: '#b8c7e0',
-                        font: {
-                            size: 12
-                        }
-                    }
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            const label = context.label || '';
-                            const value = context.raw || 0;
-                            const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                            const percentage = Math.round((value / total) * 100);
-                            return `${label}: ${value} kota (${percentage}%)`;
-                        }
-                    }
-                }
-            }
-        }
-    });
-}
-
-function createBencanaChart() {
-    const ctx = document.getElementById('bencanaChart').getContext('2d');
-    
-    // Calculate average for each disaster type
-    const averages = {
-        longsor: 0,
-        banjir: 0,
-        kebakaran: 0,
-        tsunami: 0,
-        kekeringan: 0,
-        gunung_api: 0,
-        gerakan_tanah: 0
-    };
-    
-    window.krbData.forEach(city => {
-        averages.longsor += city.longsor;
-        averages.banjir += city.banjir;
-        averages.kebakaran += city.kebakaran_hutan;
-        averages.tsunami += city.tsunami;
-        averages.kekeringan += city.kekeringan;
-        averages.gunung_api += city.gunung_api;
-        averages.gerakan_tanah += city.gerakan_tanah;
-    });
-    
-    const totalCities = window.krbData.length;
-    Object.keys(averages).forEach(key => {
-        averages[key] = parseFloat((averages[key] / totalCities).toFixed(1));
-    });
-    
-    new Chart(ctx, {
-        type: 'bar',
-        data: {
-            labels: ['Longsor', 'Banjir', 'Kebakaran Hutan', 'Tsunami', 'Kekeringan', 'Gunung Api', 'Gerakan Tanah'],
-            datasets: [{
-                data: [
-                    averages.longsor,
-                    averages.banjir,
-                    averages.kebakaran,
-                    averages.tsunami,
-                    averages.kekeringan,
-                    averages.gunung_api,
-                    averages.gerakan_tanah
-                ],
-                backgroundColor: [
-                    '#7209b7',
-                    '#4361ee',
-                    '#f94144',
-                    '#4cc9f0',
-                    '#ffd166',
-                    '#e63946',
-                    '#f4a261'
-                ],
-                borderWidth: 1,
-                borderColor: 'rgba(255, 255, 255, 0.2)'
-            }]
-        },
-        options: {
-            responsive: true,
-            maintainAspectRatio: false,
-            plugins: {
-                legend: {
-                    display: false
-                },
-                tooltip: {
-                    callbacks: {
-                        label: function(context) {
-                            return `Rata-rata: ${context.raw}`;
-                        }
-                    }
-                }
-            },
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    max: 10,
-                    ticks: {
-                        color: '#b8c7e0'
-                    },
-                    grid: {
-                        color: 'rgba(255, 255, 255, 0.1)'
-                    }
-                },
-                x: {
-                    ticks: {
-                        color: '#b8c7e0'
-                    },
-                    grid: {
-                        color: 'rgba(255, 255, 255, 0.1)'
-                    }
-                }
-            }
-        }
-    });
-}
-
-function calculateAverageRisk(city) {
-    const risks = [
-        city.longsor,
-        city.banjir,
-        city.kebakaran_hutan,
-        city.tsunami,
-        city.kekeringan,
-        city.gunung_api,
-        city.gerakan_tanah
-    ];
-    
-    const sum = risks.reduce((a, b) => a + b, 0);
-    return parseFloat((sum / risks.length).toFixed(1));
-}
-
 // Utility function for date formatting
 function formatDate(dateString) {
     const date = new Date(dateString);
@@ -556,38 +277,6 @@ function formatDate(dateString) {
     return date.toLocaleDateString('id-ID', options);
 }
 
-// Utility function for number formatting
-function formatNumber(num) {
-    return new Intl.NumberFormat('id-ID').format(num);
-}
-
-// Debounce function for performance optimization
-function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
-            func(...args);
-        };
-        clearTimeout(timeout);
-        timeout = setTimeout(later, wait);
-    };
-}
-
-// Throttle function for scroll events
-function throttle(func, limit) {
-    let inThrottle;
-    return function() {
-        const args = arguments;
-        const context = this;
-        if (!inThrottle) {
-            func.apply(context, args);
-            inThrottle = true;
-            setTimeout(() => inThrottle = false, limit);
-        }
-    };
-}
-
 // Initialize on window load
 window.addEventListener('load', function() {
     // Update copyright year
@@ -598,6 +287,5 @@ window.addEventListener('load', function() {
     }
     
     // Check for console errors
-    console.log('%c✅ Semua sistem Jabar Siaga berhasil dimuat', 'color: #2a9d8f; font-weight: bold;');
-    console.log('%c📊 Data KRB 27 kabupaten/kota siap digunakan', 'color: #7209b7;');
+    console.log('%c✅ Sistem Jabar Siaga berhasil dimuat', 'color: #2a9d8f; font-weight: bold;');
 });
