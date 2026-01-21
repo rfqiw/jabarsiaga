@@ -1,0 +1,1003 @@
+/* Game Edukasi Simulasi Bencana */
+
+/* Game Container */
+.game-container {
+    max-width: 1200px;
+    margin: 100px auto 50px;
+    padding: 0 20px;
+}
+
+/* Game Header */
+.game-header {
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background: rgba(16, 36, 64, 0.4);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.game-header h1 {
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.game-header h1 i {
+    color: var(--accent-orange);
+}
+
+.game-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 700px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Game Phase */
+.game-phase {
+    display: none;
+    animation: fadeIn 0.5s ease;
+}
+
+.game-phase.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.phase-content {
+    background: var(--bg-card);
+    border-radius: 20px;
+    padding: 3rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: var(--glass-blur);
+}
+
+.phase-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.phase-content h2 i {
+    color: var(--primary-blue);
+}
+
+.phase-description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* Scenario Selection */
+.scenario-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.scenario-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+.scenario-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.1);
+    border-color: var(--primary-blue);
+}
+
+.scenario-card.active {
+    border-color: var(--accent-orange);
+    background: rgba(255, 102, 0, 0.1);
+}
+
+.scenario-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, var(--primary-blue), var(--accent-purple));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1.5rem;
+    font-size: 2rem;
+    color: white;
+}
+
+.scenario-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.8rem;
+    color: #ffffff;
+}
+
+.scenario-card p {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.5;
+}
+
+.scenario-difficulty {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.difficulty-label {
+    display: block;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.difficulty-stars {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+
+.difficulty-stars i {
+    color: var(--warning-yellow);
+    font-size: 1rem;
+}
+
+/* Region Selection */
+.region-selection {
+    background: rgba(42, 157, 143, 0.1);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--accent-green);
+}
+
+.region-selection h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.region-selection h3 i {
+    color: var(--accent-green);
+}
+
+.region-select {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    color: #ffffff;
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+}
+
+.region-select:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+}
+
+.region-hint {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 1rem;
+}
+
+/* Buttons */
+.btn-start {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(90deg, var(--primary-blue), var(--accent-purple));
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.btn-start:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 102, 204, 0.4);
+}
+
+.btn-start:active {
+    transform: translateY(0);
+}
+
+.btn-start i {
+    margin-right: 10px;
+}
+
+.btn-map-link {
+    display: inline-block;
+    padding: 10px 20px;
+    background: transparent;
+    color: var(--primary-blue);
+    border: 1px solid var(--primary-blue);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-bottom: 1rem;
+}
+
+.btn-map-link:hover {
+    background: rgba(0, 102, 204, 0.1);
+}
+
+/* Game Progress */
+.game-progress {
+    background: rgba(16, 36, 64, 0.6);
+    border-radius: 15px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.progress-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.progress-header h2 {
+    font-size: 1.5rem;
+    color: #ffffff;
+    margin: 0;
+}
+
+.timer {
+    background: rgba(230, 57, 70, 0.2);
+    color: var(--accent-red);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-family: monospace;
+    font-size: 1.2rem;
+    border: 1px solid rgba(230, 57, 70, 0.4);
+}
+
+/* Progress Bar */
+.phase-progress {
+    margin-bottom: 2rem;
+}
+
+.progress-track {
+    height: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-blue), var(--accent-purple));
+    border-radius: 3px;
+    width: 25%;
+    transition: width 0.5s ease;
+}
+
+.phase-markers {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+}
+
+.phase-marker {
+    text-align: center;
+    position: relative;
+    z-index: 1;
+}
+
+.marker-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 0.5rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    transition: all 0.3s ease;
+}
+
+.phase-marker.active .marker-icon {
+    background: var(--primary-blue);
+    color: white;
+    transform: scale(1.1);
+}
+
+.phase-marker.completed .marker-icon {
+    background: var(--accent-green);
+    color: white;
+}
+
+.phase-marker span {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    display: block;
+}
+
+.phase-marker.active span {
+    color: #ffffff;
+}
+
+/* Score Indicators */
+.score-indicators {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.indicator {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+.indicator-label {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.indicator-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: #ffffff;
+}
+
+.indicator-bar {
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.indicator-fill {
+    height: 100%;
+    border-radius: 4px;
+    width: 0%;
+    transition: width 1s ease;
+}
+
+/* Specific indicator colors */
+#bar-preparedness {
+    background: var(--primary-blue);
+}
+
+#bar-injury {
+    background: var(--accent-red);
+}
+
+#bar-time {
+    background: var(--accent-green);
+}
+
+#bar-compliance {
+    background: var(--accent-orange);
+}
+
+/* Game Content */
+.game-content {
+    background: var(--bg-card);
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    min-height: 300px;
+}
+
+.scenario-intro {
+    text-align: center;
+    padding: 2rem;
+}
+
+.scenario-intro h3 {
+    font-size: 1.8rem;
+    color: #ffffff;
+    margin-bottom: 1rem;
+}
+
+.scenario-description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.scenario-context {
+    background: rgba(42, 157, 143, 0.1);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--accent-green);
+}
+
+.scenario-context h4 {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.scenario-context h4 i {
+    color: var(--accent-green);
+}
+
+.context-text {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Decision Options */
+.decision-options {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.decision-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    text-align: left;
+}
+
+.decision-card:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.decision-card.selected {
+    border-color: var(--accent-green);
+    background: rgba(42, 157, 143, 0.1);
+}
+
+.decision-card.wrong {
+    border-color: var(--accent-red);
+    background: rgba(230, 57, 70, 0.1);
+}
+
+.decision-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1rem;
+}
+
+.decision-icon {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    color: var(--text-muted);
+}
+
+.decision-card.selected .decision-icon {
+    background: var(--accent-green);
+    color: white;
+}
+
+.decision-card.wrong .decision-icon {
+    background: var(--accent-red);
+    color: white;
+}
+
+.decision-title {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin: 0;
+}
+
+.decision-text {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.decision-impact {
+    display: inline-block;
+    padding: 5px 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.decision-card.selected .decision-impact {
+    background: rgba(42, 157, 143, 0.2);
+    color: var(--accent-green);
+}
+
+.decision-card.wrong .decision-impact {
+    background: rgba(230, 57, 70, 0.2);
+    color: var(--accent-red);
+}
+
+/* Feedback */
+.feedback-container {
+    background: rgba(42, 157, 143, 0.1);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    border-left: 4px solid var(--accent-green);
+    animation: slideIn 0.5s ease;
+}
+
+.feedback-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+}
+
+.feedback-header h4 {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin: 0;
+}
+
+.feedback-header i {
+    color: var(--accent-green);
+    font-size: 1.5rem;
+}
+
+.feedback-text {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.feedback-impact {
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.impact-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.impact-label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.impact-value {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.impact-value.positive {
+    color: var(--accent-green);
+}
+
+.impact-value.negative {
+    color: var(--accent-red);
+}
+
+/* Game Controls */
+.game-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    background: rgba(16, 36, 64, 0.6);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.btn-control {
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+}
+
+.btn-prev {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+}
+
+.btn-prev:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.btn-prev:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.btn-hint {
+    background: rgba(249, 199, 79, 0.2);
+    color: var(--warning-yellow);
+    border: 1px solid rgba(249, 199, 79, 0.4);
+}
+
+.btn-hint:hover {
+    background: rgba(249, 199, 79, 0.3);
+}
+
+.btn-next {
+    background: var(--primary-blue);
+    color: white;
+}
+
+.btn-next:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* Results Screen */
+.result-summary {
+    background: rgba(16, 36, 64, 0.4);
+    border-radius: 15px;
+    padding: 2rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.result-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.result-scenario {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 1.3rem;
+    color: #ffffff;
+}
+
+.result-scenario i {
+    color: var(--accent-orange);
+    font-size: 1.5rem;
+}
+
+.result-total-score {
+    text-align: center;
+}
+
+.total-score-label {
+    font-size: 1rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.total-score-value {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--primary-blue);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.result-badge {
+    display: inline-block;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.result-badge.siaga {
+    background: rgba(42, 157, 143, 0.2);
+    color: var(--accent-green);
+    border: 1px solid var(--accent-green);
+}
+
+.result-badge.waspada {
+    background: rgba(249, 199, 79, 0.2);
+    color: var(--warning-yellow);
+    border: 1px solid var(--warning-yellow);
+}
+
+.result-badge.latihan {
+    background: rgba(230, 57, 70, 0.2);
+    color: var(--accent-red);
+    border: 1px solid var(--accent-red);
+}
+
+/* Performance Cards */
+.performance-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.performance-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+    padding: 1.5rem;
+    border-left: 4px solid transparent;
+}
+
+.performance-card.good {
+    border-left-color: var(--accent-green);
+}
+
+.performance-card.bad {
+    border-left-color: var(--accent-red);
+}
+
+.performance-card h4 {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.performance-card.good h4 i {
+    color: var(--accent-green);
+}
+
+.performance-card.bad h4 i {
+    color: var(--accent-red);
+}
+
+.decision-text {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+    margin-bottom: 1rem;
+}
+
+.decision-impact {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.performance-card.good .decision-impact {
+    color: var(--accent-green);
+}
+
+.performance-card.bad .decision-impact {
+    color: var(--accent-red);
+}
+
+/* SOP List */
+.improvement-areas {
+    background: rgba(42, 157, 143, 0.1);
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-left: 4px solid var(--accent-green);
+}
+
+.improvement-areas h4 {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.improvement-areas h4 i {
+    color: var(--accent-green);
+}
+
+.sop-list {
+    list-style: none;
+    padding: 0;
+}
+
+.sop-list li {
+    padding: 0.8rem 0;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sop-list li:last-child {
+    border-bottom: none;
+}
+
+.sop-list li i {
+    color: var(--accent-green);
+    margin-top: 3px;
+}
+
+/* Result Actions */
+.result-actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.btn-action {
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    flex: 1;
+    min-width: 150px;
+    justify-content: center;
+}
+
+.btn-restart {
+    background: var(--primary-blue);
+    color: white;
+}
+
+.btn-restart:hover {
+    background: var(--primary-dark);
+}
+
+.btn-share {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-share:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.btn-home {
+    background: rgba(42, 157, 143, 0.2);
+    color: var(--accent-green);
+    border: 1px solid rgba(42, 157, 143, 0.4);
+}
+
+.btn-home:hover {
+    background: rgba(42, 157, 143, 0.3);
+}
+
+/* Educational Notes */
+.educational-notes {
+    background: rgba(114, 9, 183, 0.1);
+    border-radius: 10px;
+    padding: 1.5rem;
+    border-left: 4px solid var(--accent-purple);
+}
+
+.educational-notes h4 {
+    font-size: 1.2rem;
+    color: #ffffff;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.educational-notes h4 i {
+    color: var(--accent-purple);
+}
+
+.educational-notes p {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .game-container {
+        margin: 80px auto 30px;
+        padding: 0 15px;
+    }
+    
+    .phase-content {
+        padding: 2rem;
+    }
+    
+    .scenario-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .score-indicators {
+        grid-template-columns: 1fr;
+    }
+    
+    .game-controls {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .btn-control {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .result-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+    
+    .result-actions {
+        flex-direction: column;
+    }
+    
+    .btn-action {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .game-header h1 {
+        font-size: 2rem;
+    }
+    
+    .phase-content h2 {
+        font-size: 1.8rem;
+    }
+    
+    .total-score-value {
+        font-size: 2.5rem;
+    }
+}
