@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulasi Bencana - Jabar Siaga</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/game.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-shield-alt"></i>
+                <span>Jabar<span class="logo-highlight">Siaga</span></span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link"><i class="fas fa-home"></i> Beranda</a></li>
+                <li><a href="index.html#maps" class="nav-link"><i class="fas fa-map"></i> Peta</a></li>
+                <li><a href="game.html" class="nav-link active"><i class="fas fa-gamepad"></i> Simulasi</a></li>
+                <li><a href="index.html#emergency" class="nav-link emergency-btn"><i class="fas fa-phone-alt"></i> Darurat</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Game Container -->
+    <div class="game-container">
+        <!-- Game Header -->
+        <div class="game-header">
+            <h1><i class="fas fa-fire"></i> Simulasi Kesiapsiagaan Bencana</h1>
+            <p class="game-subtitle">Latih kemampuanmu dalam menghadapi bencana dengan skenario realistis</p>
+        </div>
+
+        <!-- Scenario Selection -->
+        <div class="game-phase active" id="phase-selection">
+            <div class="phase-content">
+                <h2><i class="fas fa-flag"></i> Pilih Skenario Bencana</h2>
+                <p class="phase-description">Pilih jenis bencana yang ingin kamu latih. Setiap skenario memiliki tantangan berbeda.</p>
+                
+                <div class="scenario-grid">
+                    <div class="scenario-card" data-scenario="gempa">
+                        <div class="scenario-icon">
+                            <i class="fas fa-mountain"></i>
+                        </div>
+                        <h3>Gempa Bumi</h3>
+                        <p>Latih respons saat terjadi guncangan dan evakuasi aman</p>
+                        <div class="scenario-difficulty">
+                            <span class="difficulty-label">Tingkat Kesulitan:</span>
+                            <div class="difficulty-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="scenario-card" data-scenario="banjir">
+                        <div class="scenario-icon">
+                            <i class="fas fa-water"></i>
+                        </div>
+                        <h3>Banjir</h3>
+                        <p>Hadapi situasi banjir bandang dan penyelamatan</p>
+                        <div class="scenario-difficulty">
+                            <span class="difficulty-label">Tingkat Kesulitan:</span>
+                            <div class="difficulty-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="scenario-card" data-scenario="longsor">
+                        <div class="scenario-icon">
+                            <i class="fas fa-sliders-h"></i>
+                        </div>
+                        <h3>Tanah Longsor</h3>
+                        <p>Kenali tanda-tanda awal dan evakuasi dini</p>
+                        <div class="scenario-difficulty">
+                            <span class="difficulty-label">Tingkat Kesulitan:</span>
+                            <div class="difficulty-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="scenario-card" data-scenario="cuaca">
+                        <div class="scenario-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Cuaca Ekstrem</h3>
+                        <p>Antisipasi badai dan angin kencang</p>
+                        <div class="scenario-difficulty">
+                            <span class="difficulty-label">Tingkat Kesulitan:</span>
+                            <div class="difficulty-stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <i class="far fa-star"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="region-selection">
+                    <h3><i class="fas fa-map-marker-alt"></i> Pilih Wilayah (Opsional)</h3>
+                    <select id="region-select" class="region-select">
+                        <option value="">-- Pilih Kabupaten/Kota --</option>
+                        <option value="Bandung">Bandung</option>
+                        <option value="Bogor">Bogor</option>
+                        <option value="Bekasi">Bekasi</option>
+                        <option value="Karawang">Karawang</option>
+                        <option value="Cianjur">Cianjur</option>
+                        <option value="Sukabumi">Sukabumi</option>
+                        <option value="Garut">Garut</option>
+                    </select>
+                    <p class="region-hint">Pilih wilayah untuk mendapatkan informasi spesifik dari peta risiko</p>
+                    <button class="btn-map-link" onclick="window.location.href='index.html#maps'">
+                        <i class="fas fa-external-link-alt"></i> Lihat Peta Risiko
+                    </button>
+                </div>
+                
+                <button class="btn-start" id="start-simulation">
+                    <i class="fas fa-play"></i> Mulai Simulasi
+                </button>
+            </div>
+        </div>
+
+        <!-- Game Progress -->
+        <div class="game-progress" id="game-progress">
+            <div class="progress-header">
+                <h2>Simulasi Berlangsung</h2>
+                <div class="timer" id="timer">00:00</div>
+            </div>
+            
+            <!-- Progress Bar -->
+            <div class="phase-progress">
+                <div class="progress-track">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <div class="phase-markers">
+                    <div class="phase-marker active" data-phase="1">
+                        <div class="marker-icon">1</div>
+                        <span>Pra-Kejadian</span>
+                    </div>
+                    <div class="phase-marker" data-phase="2">
+                        <div class="marker-icon">2</div>
+                        <span>Saat Kejadian</span>
+                    </div>
+                    <div class="phase-marker" data-phase="3">
+                        <div class="marker-icon">3</div>
+                        <span>Evakuasi</span>
+                    </div>
+                    <div class="phase-marker" data-phase="4">
+                        <div class="marker-icon">4</div>
+                        <span>Pasca-Kejadian</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Score Indicators -->
+            <div class="score-indicators">
+                <div class="indicator">
+                    <div class="indicator-label">Kesiapsiagaan</div>
+                    <div class="indicator-value" id="score-preparedness">0</div>
+                    <div class="indicator-bar">
+                        <div class="indicator-fill" id="bar-preparedness"></div>
+                    </div>
+                </div>
+                <div class="indicator">
+                    <div class="indicator-label">Risiko Cedera</div>
+                    <div class="indicator-value" id="score-injury">Rendah</div>
+                    <div class="indicator-bar">
+                        <div class="indicator-fill" id="bar-injury"></div>
+                    </div>
+                </div>
+                <div class="indicator">
+                    <div class="indicator-label">Waktu Aman</div>
+                    <div class="indicator-value" id="score-time">- menit</div>
+                    <div class="indicator-bar">
+                        <div class="indicator-fill" id="bar-time"></div>
+                    </div>
+                </div>
+                <div class="indicator">
+                    <div class="indicator-label">Kepatuhan</div>
+                    <div class="indicator-value" id="score-compliance">0</div>
+                    <div class="indicator-bar">
+                        <div class="indicator-fill" id="bar-compliance"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Content (Dynamic) -->
+        <div class="game-content" id="game-content">
+            <!-- Content will be loaded by JavaScript -->
+        </div>
+
+        <!-- Game Controls -->
+        <div class="game-controls" id="game-controls">
+            <button class="btn-control btn-prev" id="btn-prev" disabled>
+                <i class="fas fa-arrow-left"></i> Sebelumnya
+            </button>
+            <button class="btn-control btn-hint" id="btn-hint">
+                <i class="fas fa-lightbulb"></i> Petunjuk
+            </button>
+            <button class="btn-control btn-next" id="btn-next">
+                Lanjutkan <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+
+        <!-- Results Screen -->
+        <div class="game-phase" id="phase-results">
+            <div class="phase-content">
+                <h2><i class="fas fa-trophy"></i> Hasil Simulasi</h2>
+                
+                <div class="result-summary">
+                    <div class="result-header">
+                        <div class="result-scenario" id="result-scenario">
+                            <i class="fas fa-fire"></i> <span>Gempa Bumi</span>
+                        </div>
+                        <div class="result-total-score">
+                            <div class="total-score-label">Skor Total</div>
+                            <div class="total-score-value" id="total-score">0</div>
+                            <div class="result-badge" id="result-badge">Perlu Latihan</div>
+                        </div>
+                    </div>
+                    
+                    <div class="result-details">
+                        <h3><i class="fas fa-chart-bar"></i> Analisis Performa</h3>
+                        
+                        <div class="performance-grid">
+                            <div class="performance-card good" id="best-decision">
+                                <h4><i class="fas fa-check-circle"></i> Keputusan Terbaik</h4>
+                                <p class="decision-text">-</p>
+                                <div class="decision-impact">+20 Skor</div>
+                            </div>
+                            
+                            <div class="performance-card bad" id="worst-decision">
+                                <h4><i class="fas fa-exclamation-triangle"></i> Perlu Perbaikan</h4>
+                                <p class="decision-text">-</p>
+                                <div class="decision-impact">-15 Skor</div>
+                            </div>
+                        </div>
+                        
+                        <div class="improvement-areas">
+                            <h4><i class="fas fa-clipboard-list"></i> Rekomendasi SOP</h4>
+                            <ul class="sop-list" id="sop-list">
+                                <!-- SOP will be populated by JavaScript -->
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="result-actions">
+                        <button class="btn-action btn-restart" id="btn-restart">
+                            <i class="fas fa-redo"></i> Coba Lagi
+                        </button>
+                        <button class="btn-action btn-share" id="btn-share">
+                            <i class="fas fa-share-alt"></i> Bagikan Hasil
+                        </button>
+                        <button class="btn-action btn-home" onclick="window.location.href='index.html'">
+                            <i class="fas fa-home"></i> Kembali ke Beranda
+                        </button>
+                    </div>
+                    
+                    <div class="educational-notes">
+                        <h4><i class="fas fa-graduation-cap"></i> Pelajaran Penting</h4>
+                        <p>Simulasi ini berdasarkan prosedur standar BPBD dan BNPB. Ingatlah bahwa dalam situasi nyata, selalu ikuti instruksi dari pihak berwenang dan pantau informasi resmi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="js/particles-config.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
