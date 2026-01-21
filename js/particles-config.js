@@ -1,9 +1,9 @@
-// Particles.js Configuration for Jabar Siaga
+// Particles.js Configuration for Jabar Siaga - Thicker Particles
 document.addEventListener('DOMContentLoaded', function() {
     particlesJS('particles-js', {
         particles: {
             number: {
-                value: 80,
+                value: 100, // Increased number of particles
                 density: {
                     enable: true,
                     value_area: 800
@@ -20,22 +20,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             },
             opacity: {
-                value: 0.5,
+                value: 0.7, // Increased opacity
                 random: true,
                 anim: {
                     enable: true,
                     speed: 1,
-                    opacity_min: 0.1,
+                    opacity_min: 0.3,
                     sync: false
                 }
             },
             size: {
-                value: 3,
+                value: 5, // Increased size
                 random: true,
                 anim: {
                     enable: true,
                     speed: 2,
-                    size_min: 0.1,
+                    size_min: 1,
                     sync: false
                 }
             },
@@ -43,8 +43,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 enable: true,
                 distance: 150,
                 color: "#ffffff",
-                opacity: 0.2,
-                width: 1
+                opacity: 0.4, // Increased opacity
+                width: 2 // Increased width
             },
             move: {
                 enable: true,
@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 grab: {
                     distance: 140,
                     line_linked: {
-                        opacity: 0.3
+                        opacity: 0.5 // Increased opacity
                     }
                 },
                 bubble: {
@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     speed: 3
                 },
                 push: {
-                    particles_nb: 4
+                    particles_nb: 6 // Increased number of pushed particles
                 },
                 remove: {
                     particles_nb: 2
